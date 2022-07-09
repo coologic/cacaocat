@@ -24,7 +24,7 @@ public class ClassFile {
     /**
      * 常量池
      */
-    List<ConstantPoolInfo> constantPools;
+    List<ConstantPoolInfo> constants;
 
     /**
      * 访问标志

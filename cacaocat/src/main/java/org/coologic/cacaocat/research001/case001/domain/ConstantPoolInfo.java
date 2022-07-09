@@ -1,6 +1,7 @@
 package org.coologic.cacaocat.research001.case001.domain;
 
 import graphql.execution.nextgen.result.ObjectExecutionResultNode;
+import org.coologic.cacaocat.research001.case001.domain.constant.Constant;
 
 import java.util.List;
 
@@ -33,5 +34,5 @@ public class ConstantPoolInfo {
      * todo 这里要动态处理了，根据不同的类型
      * 常量信息
      */
-    List<Object> info;
+    List<Constant> info;
 }
