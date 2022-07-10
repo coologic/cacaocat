@@ -36,6 +36,10 @@ public class ConstantUtf8 extends AbstractConstant {
         return constantUtf8;
     }
 
+    @Override
+    public String getDesc() {
+        return data;
+    }
 
     @Override
     public ConstantTypeEnum type() {

@@ -22,6 +22,11 @@ public class ConstantClass extends AbstractConstant {
     }
 
     @Override
+    public String getDesc() {
+        return classFile.getConstants().get(nameIndex).getDesc();
+    }
+
+    @Override
     public ConstantTypeEnum type() {
         return ConstantTypeEnum.CLASS;
     }

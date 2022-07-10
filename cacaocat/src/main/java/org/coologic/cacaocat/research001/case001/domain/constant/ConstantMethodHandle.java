@@ -13,7 +13,7 @@ public class ConstantMethodHandle extends AbstractConstant {
     private ConstantMethodHandleTypeEnum referenceKind;
     private int                          referenceIndex;
 
-    public ConstantMethodHandle(ClassFile classFileparseData(DataInput input) {
+    public ConstantMethodHandle(ClassFile classFile) {
         super(classFile);
     }
 
@@ -21,6 +21,11 @@ public class ConstantMethodHandle extends AbstractConstant {
     public void parseData(DataInput input) throws IOException {
         referenceKind = ConstantMethodHandleTypeEnum.getByTag(input.readUnsignedByte());
         referenceIndex = input.readUnsignedShort();
+    }
+
+    @Override
+    public String getDesc() {
+        return String.format("%s - %s", referenceKind.getByteCodeCode(), classFile.getConstants().get(referenceIndex).getDesc());
     }
 
     @Override

@@ -11,13 +11,18 @@ import java.io.IOException;
 public class ConstantFloat extends AbstractConstant {
     private float data;
 
-    public ConstantFloat(ClassFile classFileparseData(DataInput input) {
+    public ConstantFloat(ClassFile classFile) {
         super(classFile);
     }
 
     @Override
     public void parseData(DataInput input) throws IOException {
         data = input.readFloat();
+    }
+
+    @Override
+    public String getDesc() {
+        return String.valueOf(data);
     }
 
     @Override

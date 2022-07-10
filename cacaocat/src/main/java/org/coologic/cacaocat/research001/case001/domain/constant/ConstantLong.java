@@ -11,13 +11,18 @@ import java.io.IOException;
 public class ConstantLong extends AbstractConstant {
     private long data;
 
-    public ConstantLong(ClassFile classFileparseData(DataInput input) {
+    public ConstantLong(ClassFile classFile) {
         super(classFile);
     }
 
     @Override
     public void parseData(DataInput input) throws IOException {
         data = input.readLong();
+    }
+
+    @Override
+    public String getDesc() {
+        return String.valueOf(data);
     }
 
     @Override

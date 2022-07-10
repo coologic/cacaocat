@@ -11,7 +11,7 @@ import java.io.IOException;
 public class ConstantPackage extends AbstractConstant {
     private int nameIndex;
 
-    public ConstantPackage(ClassFile classFileparseData(DataInput input) {
+    public ConstantPackage(ClassFile classFile) {
         super(classFile);
     }
 
@@ -19,6 +19,11 @@ public class ConstantPackage extends AbstractConstant {
     public void parseData(DataInput input) throws IOException {
         //索引是>=0的一定要用无符号读取
         nameIndex = input.readUnsignedShort();
+    }
+
+    @Override
+    public String getDesc() {
+        return classFile.getConstants().get(nameIndex).getDesc();
     }
 
     @Override

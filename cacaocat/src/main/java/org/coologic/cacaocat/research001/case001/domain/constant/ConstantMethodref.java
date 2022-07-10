@@ -12,7 +12,7 @@ public class ConstantMethodref extends AbstractConstant {
     private int nameIndex;
     private int nameAndTypeIndex;
 
-    public ConstantMethodref(ClassFile classFileparseData(DataInput input) {
+    public ConstantMethodref(ClassFile classFile) {
         super(classFile);
     }
 
@@ -21,6 +21,12 @@ public class ConstantMethodref extends AbstractConstant {
         //索引是>=0的一定要用无符号读取
         nameIndex = input.readUnsignedShort();
         nameAndTypeIndex = input.readUnsignedShort();
+    }
+
+    @Override
+    public String getDesc() {
+        return String.format("%s#%s", classFile.getConstants().get(nameIndex).getDesc(),
+                classFile.getConstants().get(nameAndTypeIndex).getDesc());
     }
 
     @Override

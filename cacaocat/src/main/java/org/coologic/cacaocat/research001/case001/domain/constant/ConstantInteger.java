@@ -21,6 +21,11 @@ public class ConstantInteger extends AbstractConstant {
     }
 
     @Override
+    public String getDesc() {
+        return String.valueOf(data);
+    }
+
+    @Override
     public ConstantTypeEnum type() {
         return ConstantTypeEnum.INTEGER;
     }

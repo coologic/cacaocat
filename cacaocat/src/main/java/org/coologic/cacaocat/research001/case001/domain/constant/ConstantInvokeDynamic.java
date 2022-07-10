@@ -13,7 +13,7 @@ public class ConstantInvokeDynamic extends AbstractConstant {
     private int bootstrapMethodAttributeIndex;
     private int nameAndTypeIndex;
 
-    public ConstantInvokeDynamic(ClassFile classFileparseData(DataInput input) {
+    public ConstantInvokeDynamic(ClassFile classFile) {
         super(classFile);
     }
 
@@ -22,6 +22,11 @@ public class ConstantInvokeDynamic extends AbstractConstant {
         //索引是>=0的一定要用无符号读取
         bootstrapMethodAttributeIndex = input.readUnsignedShort();
         nameAndTypeIndex = input.readUnsignedShort();
+    }
+
+    @Override
+    public String getDesc() {
+        return classFile.getConstants().get(nameAndTypeIndex).getDesc();
     }
 
     @Override

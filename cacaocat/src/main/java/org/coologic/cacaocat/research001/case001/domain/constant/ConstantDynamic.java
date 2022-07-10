@@ -25,6 +25,11 @@ public class ConstantDynamic extends AbstractConstant {
     }
 
     @Override
+    public String getDesc() {
+        return classFile.getConstants().get(nameAndTypeIndex).getDesc();
+    }
+
+    @Override
     public ConstantTypeEnum type() {
         return ConstantTypeEnum.DYNAMIC;
     }

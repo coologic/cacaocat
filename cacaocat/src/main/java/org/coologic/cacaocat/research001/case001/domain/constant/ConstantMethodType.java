@@ -11,13 +11,18 @@ import java.io.IOException;
 public class ConstantMethodType extends AbstractConstant {
     private int descriptorIndex;
 
-    public ConstantMethodType(ClassFile classFileparseData(DataInput input) {
+    public ConstantMethodType(ClassFile classFile) {
         super(classFile);
     }
 
     @Override
     public void parseData(DataInput input) throws IOException {
         descriptorIndex = input.readUnsignedShort();
+    }
+
+    @Override
+    public String getDesc() {
+        return classFile.getConstants().get(descriptorIndex).getDesc();
     }
 
     @Override
