@@ -1,6 +1,8 @@
 package org.coologic.cacaocat.research001.case001.domain;
 
 import lombok.Data;
+import org.coologic.cacaocat.research001.case001.domain.constant.Constant;
+import org.coologic.cacaocat.research001.case001.domain.type.AccessFlagEnum;
 
 import java.util.List;
 
@@ -24,12 +26,13 @@ public class ClassFile {
     /**
      * 常量池
      */
-    List<ConstantPoolInfo> constants;
+    List<Constant> constants;
 
     /**
      * 访问标志
      */
-    int accessFlags;
+    int                  accessFlagTag;
+    List<AccessFlagEnum> accessFlags;
 
     /**
      * 类索引
@@ -42,7 +45,7 @@ public class ClassFile {
     int superClass;
 
     /**
-     * 接口索引
+     * 接口索引 每个索引都指向常量池
      */
     List<Integer> interfaces;
 
@@ -60,6 +63,18 @@ public class ClassFile {
      * 属性
      */
     List<AttributeInfo> attributes;
+
+    /**
+     * Setter method for property <tt>magic</tt>.
+     *
+     * @param magic value to be assigned to property magic
+     */
+    public void setMagic(int magic) {
+        this.magic = magic;
+        if(magic != 0xCAFEBABE) {
+            throw new IllegalArgumentException("parse error,class file magic is not 0xCAFEBABE");
+        }
+    }
 
     ///**
     // * 常量池数量 u2

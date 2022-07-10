@@ -1,5 +1,8 @@
 package org.coologic.cacaocat.research001.case001.domain.type;
 
+import lombok.Getter;
+
+@Getter
 public enum ConstantMethodHandleTypeEnum {
     GET_FIELD(1, "REF_getField"),
     GET_STATIC(2, "REF_getStatic"),
@@ -33,23 +36,5 @@ public enum ConstantMethodHandleTypeEnum {
             }
         }
         return null;
-    }
-
-    /**
-     * Getter method for property <tt>tag</tt>.
-     *
-     * @return property value of tag
-     */
-    public int getTag() {
-        return tag;
-    }
-
-    /**
-     * Getter method for property <tt>byteCodeCode</tt>.
-     *
-     * @return property value of byteCodeCode
-     */
-    public String getByteCodeCode() {
-        return byteCodeCode;
     }
 }

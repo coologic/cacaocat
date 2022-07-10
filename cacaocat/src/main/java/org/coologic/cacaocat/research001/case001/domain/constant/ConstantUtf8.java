@@ -1,20 +1,20 @@
 package org.coologic.cacaocat.research001.case001.domain.constant;
 
-import lombok.Data;
+import lombok.Getter;
 import org.coologic.cacaocat.research001.case001.domain.type.ConstantTypeEnum;
 
 import java.io.DataInput;
 import java.io.IOException;
 
-@Data
-public class ConstantUtf8 implements Constant {
+@Getter
+public class ConstantUtf8 extends AbstractConstant {
     /**
      * 常量字符串的具体内容
      */
     private String data;
 
     @Override
-    public void parse(DataInput input) throws IOException {
+    public void parseData(DataInput input) throws IOException {
         /**
          * u1 tag;
          * u2 length;
@@ -24,6 +24,13 @@ public class ConstantUtf8 implements Constant {
          */
         data = input.readUTF();
     }
+
+    public static Constant rootValue() {
+        ConstantUtf8 constantUtf8 = new ConstantUtf8();
+        constantUtf8.data = "0节点针对有常量引用但并不指向任何常量时使用，此处用这个默认值占位";
+        return constantUtf8;
+    }
+
 
     @Override
     public ConstantTypeEnum type() {

@@ -1,22 +1,27 @@
 package org.coologic.cacaocat.research001.case001.domain;
 
+import lombok.Data;
+import org.coologic.cacaocat.research001.case001.domain.type.AccessFlagEnum;
+
 import java.util.List;
 
+@Data
 public class MethodInfo {
     /**
      * 访问标志
      */
-    int             access_flags;
+    int                  accessFlagTag;
+    List<AccessFlagEnum> accessFlags;
 
     /**
      * 方法名索引
      */
-    int             name_index;
+    int             nameIndex;
 
     /**
      * 描述索引
      */
-    int             descriptor_index;
+    int             descriptorIndex;
 
     /**
      * 属性

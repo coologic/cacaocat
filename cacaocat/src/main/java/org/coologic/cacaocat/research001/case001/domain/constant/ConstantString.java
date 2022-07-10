@@ -1,19 +1,19 @@
 package org.coologic.cacaocat.research001.case001.domain.constant;
 
-import lombok.Data;
+import lombok.Getter;
 import org.coologic.cacaocat.research001.case001.domain.type.ConstantTypeEnum;
 
 import java.io.DataInput;
 import java.io.IOException;
 
-@Data
-public class ConstantString implements Constant {
-    private int classIndex;
+@Getter
+public class ConstantString extends AbstractConstant {
+    private int stringIndex;
 
     @Override
-    public void parse(DataInput input) throws IOException {
+    public void parseData(DataInput input) throws IOException {
         //索引是>=0的一定要用无符号读取
-        classIndex = input.readUnsignedShort();
+        stringIndex = input.readUnsignedShort();
     }
 
     @Override

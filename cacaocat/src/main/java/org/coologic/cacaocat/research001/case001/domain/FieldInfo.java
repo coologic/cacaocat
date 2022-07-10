@@ -1,12 +1,17 @@
 package org.coologic.cacaocat.research001.case001.domain;
 
+import lombok.Data;
+import org.coologic.cacaocat.research001.case001.domain.type.AccessFlagEnum;
+
 import java.util.List;
 
+@Data
 public class FieldInfo {
     /**
      * 访问标志
      */
-    int accessFlags;
+    int                  accessFlagTag;
+    List<AccessFlagEnum> accessFlags;
 
     /**
      * 字段名索引
