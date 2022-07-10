@@ -1,4 +1,4 @@
-package org.coologic.cacaocat.research001.case001.domain.constant;
+package org.coologic.cacaocat.research001.case001.domain.type;
 
 public enum ConstantTypeEnum {
     /**
@@ -136,8 +136,8 @@ public enum ConstantTypeEnum {
         this.size = size;
     }
 
-    public ConstantTypeEnum getByTag(int tag) {
-        for (ConstantTypeEnum value : ConstantTypeEnum.values()) {
+    public static ConstantTypeEnum getByTag(int tag) {
+        for (var value : ConstantTypeEnum.values()) {
             if (value.getTag() == tag) {
                 return value;
             }
