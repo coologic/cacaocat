@@ -34,7 +34,7 @@ ClassFile {
     u2             methods_count;  //方法数量
     method_info    methods[methods_count]; //方法
     u2             attributes_count;  //属性数量
-    attribute_info attributes[attributes_count];  //属性
+    attribute_info abstractAttributes[attributes_count];  //属性
 }
 ```
 很遗憾没有遇到捷径，我们想要的查到方法调用关系，那就需要解析出 method_info，由于二进制文件是顺序存储的，所以必须把前面的都正确解析出来，否则没法拿到正确的方法信息，既然已经走到了 method_info 那就一口气全解析了吧

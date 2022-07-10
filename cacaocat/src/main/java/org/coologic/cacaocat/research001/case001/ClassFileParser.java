@@ -1,13 +1,14 @@
 package org.coologic.cacaocat.research001.case001;
 
-import org.coologic.cacaocat.research001.case001.domain.AttributeInfo;
 import org.coologic.cacaocat.research001.case001.domain.ClassFile;
 import org.coologic.cacaocat.research001.case001.domain.FieldInfo;
 import org.coologic.cacaocat.research001.case001.domain.MethodInfo;
+import org.coologic.cacaocat.research001.case001.domain.attribute.Attribute;
 import org.coologic.cacaocat.research001.case001.domain.constant.Constant;
 import org.coologic.cacaocat.research001.case001.domain.constant.ConstantUtf8;
 import org.coologic.cacaocat.research001.case001.domain.type.AccessFlagEnum;
 import org.coologic.cacaocat.research001.case001.domain.type.AccessFlagEnumSet;
+import org.coologic.cacaocat.research001.case001.domain.type.AttributeTypeEnum;
 import org.coologic.cacaocat.research001.case001.domain.type.ConstantTypeEnum;
 
 import java.io.DataInput;
@@ -15,6 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Objects;
 
 public class ClassFileParser {
 
@@ -45,8 +47,8 @@ public class ClassFileParser {
         List<MethodInfo> methods = parseMethod(input, classFile);
         classFile.setMethods(methods);
 
-        List<AttributeInfo> attributeInfos = parseAttribute(input, classFile);
-        classFile.setAttributes(attributeInfos);
+        List<Attribute> attributes = parseAttribute(input, classFile);
+        classFile.setAbstractAttributes(attributes);
 
         return classFile;
     }
@@ -61,25 +63,25 @@ public class ClassFileParser {
             methodInfo.setAccessFlags(parseFlag(methodInfo.getAccessFlagTag(), AccessFlagEnumSet.METHOD_TYPE));
             methodInfo.setNameIndex(input.readUnsignedShort());
             methodInfo.setDescriptorIndex(input.readUnsignedShort());
-            List<AttributeInfo> attributeInfos = parseAttribute(input, classFile);
-            methodInfo.setAttributes(attributeInfos);
+            List<Attribute> attributes = parseAttribute(input, classFile);
+            methodInfo.setAbstractAttributes(attributes);
             methodInfos.add(methodInfo);
         }
         return methodInfos;
     }
 
-    public static List<AttributeInfo> parseAttribute(DataInput input, ClassFile classFile) throws IOException {
+    public static List<Attribute> parseAttribute(DataInput input, ClassFile classFile) throws IOException {
         int attributeCount = input.readUnsignedShort();
-        List<AttributeInfo> attributeInfos = new ArrayList<>(attributeCount);
-        while (attributeInfos.size() < attributeCount) {
-            AttributeInfo attributeInfo = new AttributeInfo(classFile);
-            attributeInfo.setAttributeNameIndex(input.readUnsignedShort());
-            attributeInfo.setAttributeLength(input.readInt());
-            //todo 先跳过具体解析
-            input.skipBytes(attributeInfo.getAttributeLength());
-            attributeInfos.add(attributeInfo);
+        List<Attribute> abstractAttributes = new ArrayList<>(attributeCount);
+        while (abstractAttributes.size() < attributeCount) {
+            int nameIndex = input.readUnsignedShort();
+            String attributeName = classFile.getConstants().get(nameIndex).getDesc();
+            Attribute attribute = Objects.requireNonNull(AttributeTypeEnum.getByAttributeName(attributeName))
+                    .getCreateFunction().apply(classFile);
+            attribute.parse(input);
+            abstractAttributes.add(attribute);
         }
-        return attributeInfos;
+        return abstractAttributes;
     }
 
     public static List<FieldInfo> parseField(DataInput input, ClassFile classFile) throws IOException {
@@ -91,8 +93,8 @@ public class ClassFileParser {
             fieldInfo.setAccessFlags(parseFlag(fieldInfo.getAccessFlagTag(), AccessFlagEnumSet.FIELD_TYPE));
             fieldInfo.setNameIndex(input.readUnsignedShort());
             fieldInfo.setDescriptorIndex(input.readUnsignedShort());
-            List<AttributeInfo> attributeInfos = parseAttribute(input, classFile);
-            fieldInfo.setAttributes(attributeInfos);
+            List<Attribute> attributes = parseAttribute(input, classFile);
+            fieldInfo.setAttributes(attributes);
             fieldInfos.add(fieldInfo);
         }
         return fieldInfos;

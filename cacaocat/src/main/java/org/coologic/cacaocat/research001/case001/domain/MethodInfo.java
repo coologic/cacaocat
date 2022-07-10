@@ -1,6 +1,8 @@
 package org.coologic.cacaocat.research001.case001.domain;
 
 import lombok.Data;
+import org.coologic.cacaocat.research001.case001.domain.attribute.AbstractAttribute;
+import org.coologic.cacaocat.research001.case001.domain.attribute.Attribute;
 import org.coologic.cacaocat.research001.case001.domain.type.AccessFlagEnum;
 
 import java.util.List;
@@ -30,9 +32,21 @@ public class MethodInfo {
     /**
      * 属性
      */
-    List<AttributeInfo> attributes;
+    List<Attribute> abstractAttributes;
 
     public MethodInfo(ClassFile classFile) {
         this.classFile = classFile;
+    }
+
+    public String getDesc() {
+        StringBuilder stringBuilder = new StringBuilder();
+        accessFlags.forEach(o-> stringBuilder.append(o.getCode()).append(" "));
+        stringBuilder.append(classFile.getConstants().get(descriptorIndex).getDesc())
+                .append(" ")
+                .append(classFile.getConstants().get(nameIndex).getDesc())
+                .append(" [");
+        abstractAttributes.forEach(o-> stringBuilder.append(o.getDesc()));
+        stringBuilder.append("]");
+        return stringBuilder.toString();
     }
 }
