@@ -1,6 +1,7 @@
 package org.coologic.cacaocat.research001.case001.domain.constant;
 
 import lombok.Getter;
+import org.coologic.cacaocat.research001.case001.domain.ClassFile;
 import org.coologic.cacaocat.research001.case001.domain.type.ConstantMethodHandleTypeEnum;
 import org.coologic.cacaocat.research001.case001.domain.type.ConstantTypeEnum;
 
@@ -11,6 +12,10 @@ import java.io.IOException;
 public class ConstantMethodHandle extends AbstractConstant {
     private ConstantMethodHandleTypeEnum referenceKind;
     private int                          referenceIndex;
+
+    public ConstantMethodHandle(ClassFile classFileparseData(DataInput input) {
+        super(classFile);
+    }
 
     @Override
     public void parseData(DataInput input) throws IOException {

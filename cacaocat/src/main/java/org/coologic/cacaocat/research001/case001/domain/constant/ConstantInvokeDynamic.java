@@ -1,6 +1,7 @@
 package org.coologic.cacaocat.research001.case001.domain.constant;
 
 import lombok.Getter;
+import org.coologic.cacaocat.research001.case001.domain.ClassFile;
 import org.coologic.cacaocat.research001.case001.domain.type.ConstantTypeEnum;
 
 import java.io.DataInput;
@@ -11,6 +12,10 @@ public class ConstantInvokeDynamic extends AbstractConstant {
     //这个是指向 ClassFile.attributes 的索引
     private int bootstrapMethodAttributeIndex;
     private int nameAndTypeIndex;
+
+    public ConstantInvokeDynamic(ClassFile classFileparseData(DataInput input) {
+        super(classFile);
+    }
 
     @Override
     public void parseData(DataInput input) throws IOException {

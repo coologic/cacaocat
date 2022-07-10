@@ -10,10 +10,9 @@ public interface Constant {
      * 解析
      *
      * @param input 读取流
-     * @param currentIndex 在变量池的索引
      * @throws IOException io异常
      */
-    void parse(DataInput input, int currentIndex) throws IOException;
+    void parse(DataInput input) throws IOException;
 
     /**
      * 常量类型
@@ -30,11 +29,4 @@ public interface Constant {
     default String getDesc() {
         return type().getByteCodeCode();
     }
-
-    /**
-     * 获取当前的索引
-     *
-     * @return
-     */
-    int getCurrentIndex();
 }

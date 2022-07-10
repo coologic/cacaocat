@@ -6,6 +6,9 @@ import java.util.List;
 
 @Data
 public class AttributeInfo {
+
+    ClassFile classFile;
+
     /**
      * 属性名索引
      */
@@ -13,4 +16,8 @@ public class AttributeInfo {
 
     int attributeLength;
     List<Byte> attributeSourceData;
+
+    public AttributeInfo(ClassFile classFile) {
+        this.classFile = classFile;
+    }
 }

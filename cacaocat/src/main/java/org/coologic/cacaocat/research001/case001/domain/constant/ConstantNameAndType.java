@@ -1,6 +1,7 @@
 package org.coologic.cacaocat.research001.case001.domain.constant;
 
 import lombok.Getter;
+import org.coologic.cacaocat.research001.case001.domain.ClassFile;
 import org.coologic.cacaocat.research001.case001.domain.type.ConstantTypeEnum;
 
 import java.io.DataInput;
@@ -11,6 +12,10 @@ public class ConstantNameAndType extends AbstractConstant {
     private int nameIndex;
     //这个指向的也是 utf8
     private int descriptorIndex;
+
+    public ConstantNameAndType(ClassFile classFileparseData(DataInput input) {
+        super(classFile);
+    }
 
     @Override
     public void parseData(DataInput input) throws IOException {

@@ -7,6 +7,9 @@ import java.util.List;
 
 @Data
 public class FieldInfo {
+
+    ClassFile classFile;
+
     /**
      * 访问标志
      */
@@ -37,4 +40,8 @@ public class FieldInfo {
     // * 属性
     // */
     //attribute_info attributes[attributes_count];
+
+    public FieldInfo(ClassFile classFile) {
+        this.classFile = classFile;
+    }
 }

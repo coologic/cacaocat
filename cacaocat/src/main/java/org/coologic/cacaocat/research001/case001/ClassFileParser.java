@@ -27,7 +27,7 @@ public class ClassFileParser {
         classFile.setMajorVersion(input.readUnsignedShort());
 
         //常量池处理
-        List<Constant> constants = parseConstantPool(input);
+        List<Constant> constants = parseConstantPool(input, classFile);
         classFile.setConstants(constants);
 
         classFile.setAccessFlagTag(input.readUnsignedShort());
@@ -39,40 +39,40 @@ public class ClassFileParser {
         List<Integer> interfaces = parseInterface(input);
         classFile.setInterfaces(interfaces);
 
-        List<FieldInfo> fields = parseField(input);
+        List<FieldInfo> fields = parseField(input, classFile);
         classFile.setFields(fields);
 
-        List<MethodInfo> methods = parseMethod(input);
+        List<MethodInfo> methods = parseMethod(input, classFile);
         classFile.setMethods(methods);
 
-        List<AttributeInfo> attributeInfos = parseAttribute(input);
+        List<AttributeInfo> attributeInfos = parseAttribute(input, classFile);
         classFile.setAttributes(attributeInfos);
 
         return classFile;
     }
 
-    public static List<MethodInfo> parseMethod(DataInput input) throws IOException {
+    public static List<MethodInfo> parseMethod(DataInput input, ClassFile classFile) throws IOException {
         int methodCount = input.readUnsignedShort();
         List<MethodInfo> methodInfos = new ArrayList<>();
         while (methodInfos.size() < methodCount) {
-            MethodInfo methodInfo = new MethodInfo();
+            MethodInfo methodInfo = new MethodInfo(classFile);
             int tag = input.readUnsignedShort();
             methodInfo.setAccessFlagTag(tag);
             methodInfo.setAccessFlags(parseFlag(methodInfo.getAccessFlagTag(), AccessFlagEnumSet.METHOD_TYPE));
             methodInfo.setNameIndex(input.readUnsignedShort());
             methodInfo.setDescriptorIndex(input.readUnsignedShort());
-            List<AttributeInfo> attributeInfos = parseAttribute(input);
+            List<AttributeInfo> attributeInfos = parseAttribute(input, classFile);
             methodInfo.setAttributes(attributeInfos);
             methodInfos.add(methodInfo);
         }
         return methodInfos;
     }
 
-    public static List<AttributeInfo> parseAttribute(DataInput input) throws IOException {
+    public static List<AttributeInfo> parseAttribute(DataInput input, ClassFile classFile) throws IOException {
         int attributeCount = input.readUnsignedShort();
         List<AttributeInfo> attributeInfos = new ArrayList<>(attributeCount);
         while (attributeInfos.size() < attributeCount) {
-            AttributeInfo attributeInfo = new AttributeInfo();
+            AttributeInfo attributeInfo = new AttributeInfo(classFile);
             attributeInfo.setAttributeNameIndex(input.readUnsignedShort());
             attributeInfo.setAttributeLength(input.readInt());
             //todo 先跳过具体解析
@@ -82,33 +82,33 @@ public class ClassFileParser {
         return attributeInfos;
     }
 
-    public static List<FieldInfo> parseField(DataInput input) throws IOException {
+    public static List<FieldInfo> parseField(DataInput input, ClassFile classFile) throws IOException {
         int fieldCount = input.readUnsignedShort();
         List<FieldInfo> fieldInfos = new ArrayList<>(fieldCount);
         while (fieldInfos.size() < fieldCount) {
-            FieldInfo fieldInfo = new FieldInfo();
+            FieldInfo fieldInfo = new FieldInfo(classFile);
             fieldInfo.setAccessFlagTag(input.readUnsignedShort());
             fieldInfo.setAccessFlags(parseFlag(fieldInfo.getAccessFlagTag(), AccessFlagEnumSet.FIELD_TYPE));
             fieldInfo.setNameIndex(input.readUnsignedShort());
             fieldInfo.setDescriptorIndex(input.readUnsignedShort());
-            List<AttributeInfo> attributeInfos = parseAttribute(input);
+            List<AttributeInfo> attributeInfos = parseAttribute(input, classFile);
             fieldInfo.setAttributes(attributeInfos);
             fieldInfos.add(fieldInfo);
         }
         return fieldInfos;
     }
 
-    public static List<Constant> parseConstantPool(DataInput input) throws IOException {
+    public static List<Constant> parseConstantPool(DataInput input, ClassFile classFile) throws IOException {
         int constantCount = input.readUnsignedShort();
         List<Constant> constants = new ArrayList<>(constantCount);
         //处理一下第0项常量池的数据
-        constants.add(ConstantUtf8.rootValue());
+        constants.add(ConstantUtf8.rootValue(classFile));
         while (constants.size() < constantCount) {
             int tag = input.readUnsignedByte();
             ConstantTypeEnum constantType = ConstantTypeEnum.getByTag(tag);
             assert constantType != null;
-            Constant constant = constantType.getCreateFunction().get();
-            constant.parse(input, constants.size());
+            Constant constant = constantType.getCreateFunction().apply(classFile);
+            constant.parse(input);
             constants.add(constant);
             if (constantType == ConstantTypeEnum.LONG || constantType == ConstantTypeEnum.DOUBLE) {
                 //这两个类型比较特殊，会占用常量池两个size。为了方便处理我们其实在第一个位置时已经完整读取了8byte的空间，所以两个位置存一样的数据即可

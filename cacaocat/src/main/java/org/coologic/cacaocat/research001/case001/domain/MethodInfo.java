@@ -7,6 +7,10 @@ import java.util.List;
 
 @Data
 public class MethodInfo {
+
+    ClassFile classFile;
+
+
     /**
      * 访问标志
      */
@@ -27,13 +31,8 @@ public class MethodInfo {
      * 属性
      */
     List<AttributeInfo> attributes;
-    ///**
-    // *
-    // */
-    //int             attributes_count;
-    //
-    ///**
-    // *
-    // */
-    //attribute_info attributes[attributes_count];
+
+    public MethodInfo(ClassFile classFile) {
+        this.classFile = classFile;
+    }
 }
