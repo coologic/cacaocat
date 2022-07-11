@@ -24,6 +24,7 @@ public class AttributeMethodParametersItem {
     private int nameIndex;
     private int accessFlagsCode;
 
+    //解析后的结果
     private List<AccessFlagEnum> accessFlags;
 
     public static AttributeMethodParametersItem parseData(DataInput input) throws IOException {
