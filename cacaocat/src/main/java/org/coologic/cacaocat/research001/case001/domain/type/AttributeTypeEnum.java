@@ -3,11 +3,14 @@ package org.coologic.cacaocat.research001.case001.domain.type;
 import lombok.Getter;
 import org.coologic.cacaocat.research001.case001.domain.ClassFile;
 import org.coologic.cacaocat.research001.case001.domain.attribute.Attribute;
+import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeBootstrapMethods;
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeCode;
+import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeEnclosingMethod;
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeInnerClasses;
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeLineNumberTable;
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeLocalVariableTable;
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeMethodParameters;
+import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeSourceDebugExtension;
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeSourceFile;
 
 import java.util.function.Function;
@@ -16,9 +19,9 @@ import java.util.function.Function;
 public enum AttributeTypeEnum {
     SOURCE_FILE("SourceFile", "ClassFile", AttributeSourceFile::new),
     INNER_CLASSES("InnerClasses", "ClassFile", AttributeInnerClasses::new),
-    ENCLOSING_METHOD("EnclosingMethod", "ClassFile", null),
-    SOURCE_DEBUG_EXTENSION("SourceDebugExtension", "ClassFile", null),
-    BOOTSTRAP_METHODS("BootstrapMethods", "ClassFile", null),
+    ENCLOSING_METHOD("EnclosingMethod", "ClassFile", AttributeEnclosingMethod::new),
+    SOURCE_DEBUG_EXTENSION("SourceDebugExtension", "ClassFile", AttributeSourceDebugExtension::new),
+    BOOTSTRAP_METHODS("BootstrapMethods", "ClassFile", AttributeBootstrapMethods::new),
     MODULE("Module", "ClassFile", null),
     MODULE_PACKAGES("ModulePackages", "ClassFile", null),
     MODULE_MAIN_CLASS("ModuleMainClass", "ClassFile", null),
