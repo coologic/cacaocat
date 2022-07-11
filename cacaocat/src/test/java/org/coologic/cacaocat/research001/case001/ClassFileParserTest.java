@@ -2,10 +2,13 @@ package org.coologic.cacaocat.research001.case001;
 
 import org.coologic.cacaocat.research001.case001.domain.ClassFile;
 import org.coologic.cacaocat.research001.case001.domain.constant.Constant;
+import org.coologic.cacaocat.research001.case001.domain.type.AttributeTypeEnum;
+import org.coologic.cacaocat.research001.case001.domain.type.ConstantTypeEnum;
 import org.junit.jupiter.api.Test;
 
 import java.io.DataInput;
 import java.io.IOException;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -59,5 +62,19 @@ class ClassFileParserTest {
         for (int i = 0; i < classFile.getAbstractAttributes().size(); i++) {
             System.out.println(classFile.getAbstractAttributes().get(i).getDesc());
         }
+    }
+
+    @Test
+    void testAttributesTypeEqual() {
+        Arrays.stream(AttributeTypeEnum.values())
+                .filter(o->o.getCreateFunction() != null)
+                .forEach(o->assertEquals(o, o.getCreateFunction().apply(null).type()));
+    }
+
+    @Test
+    void testConstantTypeEqual() {
+        Arrays.stream(ConstantTypeEnum.values())
+                .filter(o->o.getCreateFunction() != null)
+                .forEach(o->assertEquals(o, o.getCreateFunction().apply(null).type()));
     }
 }
