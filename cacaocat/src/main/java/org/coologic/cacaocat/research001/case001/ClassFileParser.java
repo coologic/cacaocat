@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 
 public class ClassFileParser {
 
@@ -76,8 +77,19 @@ public class ClassFileParser {
         while (abstractAttributes.size() < attributeCount) {
             int nameIndex = input.readUnsignedShort();
             String attributeName = classFile.getConstants().get(nameIndex).getDesc();
-            Attribute attribute = Objects.requireNonNull(AttributeTypeEnum.getByAttributeName(attributeName))
-                    .getCreateFunction().apply(classFile);
+            AttributeTypeEnum attributeTypeEnum = AttributeTypeEnum.getByAttributeName(attributeName);
+            if (attributeTypeEnum == null) {
+                System.out.println("处理失败，未知的attribute类型,attributeName:" + attributeName);
+            }
+            Function<ClassFile, Attribute> createFunction = Objects.requireNonNull(attributeTypeEnum).getCreateFunction();
+            if (createFunction == null) {
+                System.out.println("处理失败，attribute缺少对应构建器,attributeName:" + attributeName);
+            }
+            Attribute attribute = createFunction.apply(classFile);
+            if (attribute.type() != attributeTypeEnum) {
+                System.out.println("处理错误，attribute类型代码逻辑错误,返回的type:" + attribute.type().getName()
+                        + ",实际类型:" + attributeTypeEnum.getName());
+            }
             attribute.parse(input);
             abstractAttributes.add(attribute);
         }
@@ -132,7 +144,7 @@ public class ClassFileParser {
     public static List<AccessFlagEnum> parseFlag(int flagTag, EnumSet<AccessFlagEnum> flagTypeList) {
         List<AccessFlagEnum> result = new ArrayList<>();
         for (var flag : flagTypeList) {
-            if((flag.getTag() & flagTag) != 0) {
+            if ((flag.getTag() & flagTag) != 0) {
                 result.add(flag);
             }
         }
