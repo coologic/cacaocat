@@ -10,6 +10,8 @@ import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeInner
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeLineNumberTable;
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeLocalVariableTable;
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeMethodParameters;
+import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeModule;
+import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeModulePackages;
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeSourceDebugExtension;
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeSourceFile;
 
@@ -22,8 +24,8 @@ public enum AttributeTypeEnum {
     ENCLOSING_METHOD("EnclosingMethod", "ClassFile", AttributeEnclosingMethod::new),
     SOURCE_DEBUG_EXTENSION("SourceDebugExtension", "ClassFile", AttributeSourceDebugExtension::new),
     BOOTSTRAP_METHODS("BootstrapMethods", "ClassFile", AttributeBootstrapMethods::new),
-    MODULE("Module", "ClassFile", null),
-    MODULE_PACKAGES("ModulePackages", "ClassFile", null),
+    MODULE("Module", "ClassFile", AttributeModule::new),
+    MODULE_PACKAGES("ModulePackages", "ClassFile", AttributeModulePackages::new),
     MODULE_MAIN_CLASS("ModuleMainClass", "ClassFile", null),
     NEST_HOST("NestHost", "ClassFile", null),
     NEST_MEMBERS("NestMembers", "ClassFile", null),

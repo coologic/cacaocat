@@ -24,14 +24,14 @@ import java.io.IOException;
  * }
  */
 @Getter
-public class AttributeCodeExceptionTable {
+public class AttributeCodeExceptionItem {
     private int startPc;
     private int endPc;
     private int handlerPc;
     private int catchType;
 
-    public static AttributeCodeExceptionTable parseData(DataInput input) throws IOException {
-        AttributeCodeExceptionTable exceptionTable = new AttributeCodeExceptionTable();
+    public static AttributeCodeExceptionItem parseData(DataInput input) throws IOException {
+        AttributeCodeExceptionItem exceptionTable = new AttributeCodeExceptionItem();
         exceptionTable.startPc = input.readUnsignedShort();
         exceptionTable.endPc = input.readUnsignedShort();
         exceptionTable.handlerPc = input.readUnsignedShort();

@@ -3,7 +3,7 @@ package org.coologic.cacaocat.research001.case001.domain.attribute;
 import lombok.Getter;
 import org.coologic.cacaocat.research001.case001.ClassFileParser;
 import org.coologic.cacaocat.research001.case001.domain.ClassFile;
-import org.coologic.cacaocat.research001.case001.domain.attribute.inner.AttributeCodeExceptionTable;
+import org.coologic.cacaocat.research001.case001.domain.attribute.inner.AttributeCodeExceptionItem;
 import org.coologic.cacaocat.research001.case001.domain.type.AttributeTypeEnum;
 
 import java.io.DataInput;
@@ -35,9 +35,9 @@ public class AttributeCode extends AbstractAttribute {
     private int        maxLocals;
     private int        codeLength;
     //todo 具体值暂时没处理
-    private byte[]                            code;
-    private List<AttributeCodeExceptionTable> exceptionTables = new ArrayList<>();
-    private List<Attribute>                   attributes      = new ArrayList<>();
+    private byte[]                           code;
+    private List<AttributeCodeExceptionItem> exceptionTables = new ArrayList<>();
+    private List<Attribute>                  attributes      = new ArrayList<>();
 
     public AttributeCode(ClassFile classFile) {
         super(classFile);
@@ -52,7 +52,7 @@ public class AttributeCode extends AbstractAttribute {
         input.readFully(code);
         int exceptionTableLength = input.readUnsignedShort();
         while (exceptionTables.size() < exceptionTableLength) {
-            this.exceptionTables.add(AttributeCodeExceptionTable.parseData(input));
+            this.exceptionTables.add(AttributeCodeExceptionItem.parseData(input));
         }
 
         attributes =  ClassFileParser.parseAttribute(input, classFile);
