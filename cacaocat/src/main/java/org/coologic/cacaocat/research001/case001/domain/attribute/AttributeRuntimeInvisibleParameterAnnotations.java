@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * RuntimeVisibleParameterAnnotations_attribute {
+ * RuntimeInvisibleParameterAnnotations_attribute {
  *     u2 attribute_name_index;
  *     u4 attribute_length;
  *     u1 num_parameters;
@@ -21,10 +21,10 @@ import java.util.List;
  * }
  */
 @Getter
-public class AttributeRuntimeVisibleParameterAnnotations extends AbstractAttribute {
+public class AttributeRuntimeInvisibleParameterAnnotations extends AbstractAttribute {
     List<AttributeRecordComponentItem> components = new ArrayList<>();
 
-    public AttributeRuntimeVisibleParameterAnnotations(ClassFile classFile) {
+    public AttributeRuntimeInvisibleParameterAnnotations(ClassFile classFile) {
         super(classFile);
     }
 
@@ -38,6 +38,6 @@ public class AttributeRuntimeVisibleParameterAnnotations extends AbstractAttribu
 
     @Override
     public AttributeTypeEnum type() {
-        return AttributeTypeEnum.RUNTIME_VISIBLE_PARAMETER_ANNOTATIONS;
+        return AttributeTypeEnum.RUNTIME_INVISIBLE_PARAMETER_ANNOTATIONS;
     }
 }
