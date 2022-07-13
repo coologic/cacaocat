@@ -32,7 +32,7 @@ public class ConstantUtf8 extends AbstractConstant {
 
     public static Constant rootValue(ClassFile classFile) {
         ConstantUtf8 constantUtf8 = new ConstantUtf8(classFile);
-        constantUtf8.data = "0节点针对有常量引用但并不指向任何常量时使用，此处用这个默认值占位";
+        constantUtf8.data = "#0 zero constant";
         return constantUtf8;
     }
 

@@ -73,7 +73,7 @@ class ClassFileParserTest {
         DataInput dataInput = FileReader.readClassFile(path);
         ClassFile classFile = ClassFileParser.parseClassFile(dataInput);
         for (int i = 0; i < classFile.getAbstractAttributes().size(); i++) {
-            System.out.println(classFile.getAbstractAttributes().get(i).getDesc());
+            System.out.println(classFile.getAbstractAttributes().get(i).toString());
         }
     }
 

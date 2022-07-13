@@ -1,6 +1,5 @@
 package org.coologic.cacaocat.research001.case001.domain.attribute;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.coologic.cacaocat.research001.case001.domain.ClassFile;
@@ -42,12 +41,7 @@ public abstract class AbstractAttribute implements Attribute {
     abstract public void parseData(DataInput input) throws IOException;
 
     @Override
-    public String getDesc() {
-        return classFile.getConstants().get(attributeNameIndex).getDesc();
-    }
-
-    @Override
     public String toString() {
-        return getDesc();
+        return classFile.getConstants().get(attributeNameIndex).getDesc();
     }
 }

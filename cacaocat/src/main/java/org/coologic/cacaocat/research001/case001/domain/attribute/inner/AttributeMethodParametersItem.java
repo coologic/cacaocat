@@ -24,9 +24,19 @@ import java.util.List;
 public class AttributeMethodParametersItem extends AttributeItem {
     private int nameIndex;
     private int accessFlagsCode;
-
-    //解析后的结果
     private List<AccessFlagEnum> accessFlags;
+
+    public String getName() {
+        return classFile.getConstants().get(nameIndex).getDesc();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        accessFlags.forEach(o -> stringBuilder.append(o.getCode()).append(" "));
+        stringBuilder.append(getName());
+        return stringBuilder.toString();
+    }
 
     public static AttributeMethodParametersItem parseData(DataInput input,
                                                           ClassFile classFile) throws IOException {

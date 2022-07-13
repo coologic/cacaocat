@@ -28,7 +28,6 @@ public class AttributeSourceFile extends AbstractAttribute {
         sourceFileIndex = input.readUnsignedShort();
     }
 
-    @Override
     public String getDesc() {
         return classFile.getConstants().get(sourceFileIndex).getDesc();
     }

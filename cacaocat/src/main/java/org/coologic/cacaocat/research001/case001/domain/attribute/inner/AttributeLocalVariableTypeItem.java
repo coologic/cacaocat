@@ -23,9 +23,25 @@ import java.io.IOException;
 public class AttributeLocalVariableTypeItem extends AttributeItem {
     int startPc;
     int length;
+    //名称
     int nameIndex;
+    //签名
     int signatureIndex;
+    //序号
     int index;
+
+    public String getName() {
+        return getClassFile().getConstants().get(nameIndex).getDesc();
+    }
+
+    public String getSignature() {
+        return getClassFile().getConstants().get(signatureIndex).getDesc();
+    }
+
+    @Override
+    public String toString() {
+        return getSignature() + " " + getName();
+    }
 
     public static AttributeLocalVariableTypeItem parseData(DataInput input,
                                                            ClassFile classFile) throws IOException {

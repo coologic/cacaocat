@@ -8,13 +8,14 @@ import java.io.DataInput;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Exceptions_attribute {
- *     u2 attribute_name_index;
- *     u4 attribute_length;
- *     u2 number_of_exceptions;
- *     u2 exception_index_table[number_of_exceptions];
+ * u2 attribute_name_index;
+ * u4 attribute_length;
+ * u2 number_of_exceptions;
+ * u2 exception_index_table[number_of_exceptions];
  * }
  */
 @Getter
@@ -23,6 +24,15 @@ public class AttributeExceptions extends AbstractAttribute {
 
     public AttributeExceptions(ClassFile classFile) {
         super(classFile);
+    }
+
+    public List<String> getExceptions() {
+        return exceptionIndex.stream().map(ei -> classFile.getConstants().get(ei).getDesc()).collect(Collectors.toList());
+    }
+
+    @Override
+    public String toString() {
+        return String.join("\n", getExceptions());
     }
 
     @Override

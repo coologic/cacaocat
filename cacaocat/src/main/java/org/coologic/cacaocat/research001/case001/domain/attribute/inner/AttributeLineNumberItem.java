@@ -18,7 +18,9 @@ import java.io.IOException;
  */
 @Getter
 public class AttributeLineNumberItem extends AttributeItem {
+    //起始PC
     private int startPc;
+    //行号
     private int lineNumber;
 
     public static AttributeLineNumberItem parseData(DataInput input, ClassFile classFile) throws IOException {
