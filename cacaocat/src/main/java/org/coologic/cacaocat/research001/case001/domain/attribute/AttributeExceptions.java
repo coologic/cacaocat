@@ -2,7 +2,6 @@ package org.coologic.cacaocat.research001.case001.domain.attribute;
 
 import lombok.Getter;
 import org.coologic.cacaocat.research001.case001.domain.ClassFile;
-import org.coologic.cacaocat.research001.case001.domain.attribute.inner.AttributeRecordComponentItem;
 import org.coologic.cacaocat.research001.case001.domain.type.AttributeTypeEnum;
 
 import java.io.DataInput;

@@ -72,7 +72,7 @@ public class ClassFile {
     public void setMagic(int magic) {
         this.magic = magic;
         if(magic != 0xCAFEBABE) {
-            throw new IllegalArgumentException("parse error,class file magic is not 0xCAFEBABE");
+            throw new IllegalArgumentException("parseClassFile error,class file magic is not 0xCAFEBABE");
         }
     }
 }

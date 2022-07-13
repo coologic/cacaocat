@@ -27,6 +27,6 @@ public interface Attribute {
      * @return 描述信息
      */
     default String getDesc() {
-        return type().getName();
+        return type().getCode();
     }
 }

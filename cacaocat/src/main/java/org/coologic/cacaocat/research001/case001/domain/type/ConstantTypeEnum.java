@@ -51,7 +51,7 @@ public enum ConstantTypeEnum {
      * u4 low_bytes;
      * 特殊空间占用，这个类型会占用两个pool位置，不是一个，构建常量池列表是特别注意
      */
-    LONG("constant_long", 5, ConstantLong::new),
+    LONG("CONSTANT_Long", 5, ConstantLong::new),
     /**
      * 长整数 字面量，直接取得结果
      * u1 tag;
@@ -144,7 +144,7 @@ public enum ConstantTypeEnum {
     /**
      * 常量类型的字节码标准名称
      */
-    private final String byteCodeCode;
+    private final String code;
 
     /**
      * 常量类型tag
@@ -154,7 +154,7 @@ public enum ConstantTypeEnum {
     private final Function<ClassFile, Constant> createFunction;
 
     ConstantTypeEnum(String byteCodeCode, int tag, Function<ClassFile, Constant> createFunction) {
-        this.byteCodeCode = byteCodeCode;
+        this.code = byteCodeCode;
         this.tag = tag;
         this.createFunction = createFunction;
     }

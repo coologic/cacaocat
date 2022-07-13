@@ -21,7 +21,7 @@ import java.util.function.Function;
 
 public class ClassFileParser {
 
-    public static ClassFile parse(DataInput input) throws IOException {
+    public static ClassFile parseClassFile(DataInput input) throws IOException {
         ClassFile classFile = new ClassFile();
 
         //下面的顺序一定不能错
@@ -87,8 +87,8 @@ public class ClassFileParser {
             }
             Attribute attribute = createFunction.apply(classFile);
             if (attribute.type() != attributeTypeEnum) {
-                System.out.println("处理错误，attribute类型代码逻辑错误,返回的type:" + attribute.type().getName()
-                        + ",实际类型:" + attributeTypeEnum.getName());
+                System.out.println("处理错误，attribute类型代码逻辑错误,返回的type:" + attribute.type().getCode()
+                        + ",实际类型:" + attributeTypeEnum.getCode());
             }
             attribute.parse(input);
             abstractAttributes.add(attribute);

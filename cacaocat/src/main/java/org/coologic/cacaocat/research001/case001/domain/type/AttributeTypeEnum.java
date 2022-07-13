@@ -13,6 +13,7 @@ import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeExcep
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeInnerClasses;
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeLineNumberTable;
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeLocalVariableTable;
+import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeLocalVariableTypeTable;
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeMethodParameters;
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeModule;
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeModuleMainClass;
@@ -29,6 +30,7 @@ import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeRunti
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeSignature;
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeSourceDebugExtension;
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeSourceFile;
+import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeStackMapTable;
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeSynthetic;
 
 import java.util.function.Function;
@@ -68,27 +70,27 @@ public enum AttributeTypeEnum {
     SIGNATURE("Signature", "ClassFile,field_info,method_info,record_component_info", AttributeSignature::new),
     LINE_NUMBER_TABLE("LineNumberTable", "Code", AttributeLineNumberTable::new),
     LOCAL_VARIABLE_TABLE("LocalVariableTable", "Code", AttributeLocalVariableTable::new),
-    LOCAL_VARIABLE_TYPE_TABLE("LocalVariableTypeTable", "Code", null),
-    STACK_MAP_TABLE("StackMapTable", "Code", null),
+    LOCAL_VARIABLE_TYPE_TABLE("LocalVariableTypeTable", "Code", AttributeLocalVariableTypeTable::new),
+    STACK_MAP_TABLE("StackMapTable", "Code", AttributeStackMapTable::new),
     ;
     /**
      * 字节码标准名称
      */
-    private final String name;
+    private final String code;
 
     private final String usePosition;
 
     private final Function<ClassFile, Attribute> createFunction;
 
-    AttributeTypeEnum(String name, String usePosition, Function<ClassFile, Attribute> createFunction) {
-        this.name = name;
+    AttributeTypeEnum(String code, String usePosition, Function<ClassFile, Attribute> createFunction) {
+        this.code = code;
         this.usePosition = usePosition;
         this.createFunction = createFunction;
     }
 
     public static AttributeTypeEnum getByAttributeName(String tag) {
         for (var value : AttributeTypeEnum.values()) {
-            if (value.getName().equals(tag)) {
+            if (value.getCode().equals(tag)) {
                 return value;
             }
         }

@@ -27,6 +27,6 @@ public interface Constant {
      * @return 描述信息
      */
     default String getDesc() {
-        return type().getByteCodeCode();
+        return type().getCode();
     }
 }
