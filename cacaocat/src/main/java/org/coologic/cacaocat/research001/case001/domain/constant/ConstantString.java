@@ -22,8 +22,8 @@ public class ConstantString extends AbstractConstant {
     }
 
     @Override
-    public String getDesc() {
-        return classFile.getConstants().get(stringIndex).getDesc();
+    public String toString() {
+        return classFile.getConstants().get(stringIndex).toString();
     }
 
     @Override

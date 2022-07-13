@@ -33,7 +33,7 @@ class ClassFileParserTest {
         ClassFile classFile = ClassFileParser.parseClassFile(dataInput);
         for (int i = 0; i < classFile.getConstants().size(); i++) {
             Constant constant = classFile.getConstants().get(i);
-            System.out.println(String.format("#%s | %s | %s", i,  constant.type().getCode(), constant.getDesc()));
+            System.out.println(String.format("#%s | %s | %s", i,  constant.type().getCode(), constant.toString()));
         }
     }
 

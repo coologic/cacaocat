@@ -24,9 +24,9 @@ public class ConstantMethodref extends AbstractConstant {
     }
 
     @Override
-    public String getDesc() {
-        return String.format("%s#%s", classFile.getConstants().get(nameIndex).getDesc(),
-                classFile.getConstants().get(nameAndTypeIndex).getDesc());
+    public String toString() {
+        return String.format("%s#%s", classFile.getConstants().get(nameIndex).toString(),
+                classFile.getConstants().get(nameAndTypeIndex).toString());
     }
 
     @Override

@@ -33,11 +33,11 @@ public class AttributeLocalVariableTableItem extends AttributeItem {
     private int index;
 
     public String getName() {
-        return getClassFile().getConstants().get(nameIndex).getDesc();
+        return getClassFile().getConstants().get(nameIndex).toString();
     }
 
     public String getDescriptor() {
-        return getClassFile().getConstants().get(descriptorIndex).getDesc();
+        return getClassFile().getConstants().get(descriptorIndex).toString();
     }
 
     @Override

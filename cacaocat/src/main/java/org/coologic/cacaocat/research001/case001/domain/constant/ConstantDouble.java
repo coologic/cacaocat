@@ -21,7 +21,7 @@ public class ConstantDouble extends AbstractConstant {
     }
 
     @Override
-    public String getDesc() {
+    public String toString() {
         return String.valueOf(data);
     }
 

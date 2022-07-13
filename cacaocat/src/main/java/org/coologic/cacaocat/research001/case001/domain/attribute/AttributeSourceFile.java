@@ -29,7 +29,7 @@ public class AttributeSourceFile extends AbstractAttribute {
     }
 
     public String getDesc() {
-        return classFile.getConstants().get(sourceFileIndex).getDesc();
+        return classFile.getConstants().get(sourceFileIndex).toString();
     }
 
     @Override

@@ -25,8 +25,8 @@ public class ConstantDynamic extends AbstractConstant {
     }
 
     @Override
-    public String getDesc() {
-        return classFile.getConstants().get(nameAndTypeIndex).getDesc();
+    public String toString() {
+        return classFile.getConstants().get(nameAndTypeIndex).toString();
     }
 
     @Override

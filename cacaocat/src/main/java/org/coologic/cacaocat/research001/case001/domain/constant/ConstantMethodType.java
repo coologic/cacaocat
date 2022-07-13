@@ -21,8 +21,8 @@ public class ConstantMethodType extends AbstractConstant {
     }
 
     @Override
-    public String getDesc() {
-        return classFile.getConstants().get(descriptorIndex).getDesc();
+    public String toString() {
+        return classFile.getConstants().get(descriptorIndex).toString();
     }
 
     @Override

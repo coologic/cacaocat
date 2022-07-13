@@ -20,13 +20,4 @@ public interface Constant {
      * @return 类型
      */
     ConstantTypeEnum type();
-
-    /**
-     * 获取描述信息
-     *
-     * @return 描述信息
-     */
-    default String getDesc() {
-        return type().getCode();
-    }
 }

@@ -24,8 +24,8 @@ public class ConstantMethodHandle extends AbstractConstant {
     }
 
     @Override
-    public String getDesc() {
-        return String.format("%s - %s", referenceKind.getByteCodeCode(), classFile.getConstants().get(referenceIndex).getDesc());
+    public String toString() {
+        return String.format("%s - %s", referenceKind.getByteCodeCode(), classFile.getConstants().get(referenceIndex).toString());
     }
 
     @Override

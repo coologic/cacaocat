@@ -76,7 +76,7 @@ public class ClassFileParser {
         List<Attribute> abstractAttributes = new ArrayList<>(attributeCount);
         while (abstractAttributes.size() < attributeCount) {
             int nameIndex = input.readUnsignedShort();
-            String attributeName = classFile.getConstants().get(nameIndex).getDesc();
+            String attributeName = classFile.getConstants().get(nameIndex).toString();
             AttributeTypeEnum attributeTypeEnum = AttributeTypeEnum.getByAttributeName(attributeName);
             if (attributeTypeEnum == null) {
                 System.out.println("处理失败，未知的attribute类型,attributeName:" + attributeName);

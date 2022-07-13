@@ -31,11 +31,11 @@ public class AttributeLocalVariableTypeItem extends AttributeItem {
     int index;
 
     public String getName() {
-        return getClassFile().getConstants().get(nameIndex).getDesc();
+        return getClassFile().getConstants().get(nameIndex).toString();
     }
 
     public String getSignature() {
-        return getClassFile().getConstants().get(signatureIndex).getDesc();
+        return getClassFile().getConstants().get(signatureIndex).toString();
     }
 
     @Override

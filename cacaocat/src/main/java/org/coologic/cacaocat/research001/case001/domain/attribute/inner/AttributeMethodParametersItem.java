@@ -27,7 +27,7 @@ public class AttributeMethodParametersItem extends AttributeItem {
     private List<AccessFlagEnum> accessFlags;
 
     public String getName() {
-        return classFile.getConstants().get(nameIndex).getDesc();
+        return classFile.getConstants().get(nameIndex).toString();
     }
 
     @Override

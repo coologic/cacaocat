@@ -37,7 +37,7 @@ public class ConstantUtf8 extends AbstractConstant {
     }
 
     @Override
-    public String getDesc() {
+    public String toString() {
         return data;
     }
 

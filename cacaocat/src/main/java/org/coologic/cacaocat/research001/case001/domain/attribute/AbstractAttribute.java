@@ -42,6 +42,6 @@ public abstract class AbstractAttribute implements Attribute {
 
     @Override
     public String toString() {
-        return classFile.getConstants().get(attributeNameIndex).getDesc();
+        return classFile.getConstants().get(attributeNameIndex).toString();
     }
 }

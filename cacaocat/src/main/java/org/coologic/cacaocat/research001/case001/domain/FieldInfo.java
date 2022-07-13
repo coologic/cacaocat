@@ -1,6 +1,5 @@
 package org.coologic.cacaocat.research001.case001.domain;
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import org.coologic.cacaocat.research001.case001.domain.attribute.Attribute;
@@ -41,11 +40,11 @@ public class FieldInfo {
     }
 
     public String getName() {
-        return classFile.getConstants().get(nameIndex).getDesc();
+        return classFile.getConstants().get(nameIndex).toString();
     }
 
     public String getDescriptor() {
-        return classFile.getConstants().get(descriptorIndex).getDesc();
+        return classFile.getConstants().get(descriptorIndex).toString();
     }
 
     @Override

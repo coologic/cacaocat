@@ -21,7 +21,7 @@ public class ConstantFloat extends AbstractConstant {
     }
 
     @Override
-    public String getDesc() {
+    public String toString() {
         return String.valueOf(data);
     }
 

@@ -39,11 +39,11 @@ public class MethodInfo {
     }
 
     public String getName() {
-        return classFile.getConstants().get(nameIndex).getDesc();
+        return classFile.getConstants().get(nameIndex).toString();
     }
 
     public String getDescriptor() {
-        return classFile.getConstants().get(descriptorIndex).getDesc();
+        return classFile.getConstants().get(descriptorIndex).toString();
     }
 
     @Override

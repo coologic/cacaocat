@@ -27,7 +27,7 @@ public class AttributeExceptions extends AbstractAttribute {
     }
 
     public List<String> getExceptions() {
-        return exceptionIndex.stream().map(ei -> classFile.getConstants().get(ei).getDesc()).collect(Collectors.toList());
+        return exceptionIndex.stream().map(ei -> classFile.getConstants().get(ei).toString()).collect(Collectors.toList());
     }
 
     @Override
