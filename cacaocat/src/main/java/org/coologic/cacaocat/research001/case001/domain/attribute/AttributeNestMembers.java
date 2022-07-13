@@ -10,31 +10,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ModulePackages_attribute {
- * u2 attribute_name_index;
- * u4 attribute_length;
- * u2 package_count;
- * u2 package_index[package_count];
+ * NestMembers_attribute {
+ *     u2 attribute_name_index;
+ *     u4 attribute_length;
+ *     u2 number_of_classes;
+ *     u2 classes[number_of_classes];
  * }
  */
 @Getter
-public class AttributeModuleMainClass extends AbstractAttribute {
-    List<Integer> packageIndex = new ArrayList<>();
+public class AttributeNestMembers extends AbstractAttribute {
+    List<Integer> classes = new ArrayList<>();
 
-    public AttributeModuleMainClass(ClassFile classFile) {
+    public AttributeNestMembers(ClassFile classFile) {
         super(classFile);
     }
 
     @Override
     public void parseData(DataInput input) throws IOException {
-        int size = input.readUnsignedByte();
-        while (packageIndex.size() < size) {
-            packageIndex.add(input.readUnsignedByte());
+        int classCount = input.readInt();
+        while (classes.size() < classCount) {
+            classes.add(input.readUnsignedShort());
         }
     }
 
     @Override
     public AttributeTypeEnum type() {
-        return AttributeTypeEnum.MODULE_MAIN_CLASS;
+        return AttributeTypeEnum.NEST_MEMBERS;
     }
 }
