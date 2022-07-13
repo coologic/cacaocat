@@ -7,6 +7,7 @@ import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeAnnot
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeBootstrapMethods;
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeCode;
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeConstantValue;
+import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeDeprecated;
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeEnclosingMethod;
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeExceptions;
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeInnerClasses;
@@ -25,8 +26,10 @@ import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeRunti
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeRuntimeVisibleAnnotations;
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeRuntimeVisibleParameterAnnotations;
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeRuntimeVisibleTypeAnnotations;
+import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeSignature;
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeSourceDebugExtension;
 import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeSourceFile;
+import org.coologic.cacaocat.research001.case001.domain.attribute.AttributeSynthetic;
 
 import java.util.function.Function;
 
@@ -60,9 +63,9 @@ public enum AttributeTypeEnum {
             AttributeRuntimeInvisibleTypeAnnotations::new),
     ANNOTATION_DEFAULT("AnnotationDefault", "method_info", AttributeAnnotationDefault::new),
     METHOD_PARAMETERS("MethodParameters", "method_info", AttributeMethodParameters::new),
-    SYNTHETIC("Synthetic", "ClassFile,field_info,method_info", null),
-    DEPRECATED("Deprecated", "ClassFile,field_info,method_info", null),
-    SIGNATURE("Signature", "ClassFile,field_info,method_info,record_component_info", null),
+    SYNTHETIC("Synthetic", "ClassFile,field_info,method_info", AttributeSynthetic::new),
+    DEPRECATED("Deprecated", "ClassFile,field_info,method_info", AttributeDeprecated::new),
+    SIGNATURE("Signature", "ClassFile,field_info,method_info,record_component_info", AttributeSignature::new),
     LINE_NUMBER_TABLE("LineNumberTable", "Code", AttributeLineNumberTable::new),
     LOCAL_VARIABLE_TABLE("LocalVariableTable", "Code", AttributeLocalVariableTable::new),
     LOCAL_VARIABLE_TYPE_TABLE("LocalVariableTypeTable", "Code", null),
