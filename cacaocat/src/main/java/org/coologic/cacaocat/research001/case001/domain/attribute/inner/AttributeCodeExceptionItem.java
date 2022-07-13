@@ -1,6 +1,7 @@
 package org.coologic.cacaocat.research001.case001.domain.attribute.inner;
 
 import lombok.Getter;
+import org.coologic.cacaocat.research001.case001.domain.ClassFile;
 
 import java.io.DataInput;
 import java.io.IOException;
@@ -24,18 +25,20 @@ import java.io.IOException;
  * }
  */
 @Getter
-public class AttributeCodeExceptionItem {
+public class AttributeCodeExceptionItem extends AttributeItem {
     private int startPc;
     private int endPc;
     private int handlerPc;
     private int catchType;
 
-    public static AttributeCodeExceptionItem parseData(DataInput input) throws IOException {
-        AttributeCodeExceptionItem exceptionTable = new AttributeCodeExceptionItem();
-        exceptionTable.startPc = input.readUnsignedShort();
-        exceptionTable.endPc = input.readUnsignedShort();
-        exceptionTable.handlerPc = input.readUnsignedShort();
-        exceptionTable.catchType = input.readUnsignedShort();
-        return exceptionTable;
+    public static AttributeCodeExceptionItem parseData(DataInput input,
+                                                       ClassFile classFile) throws IOException {
+        AttributeCodeExceptionItem table = new AttributeCodeExceptionItem();
+        table.classFile = classFile;
+        table.startPc = input.readUnsignedShort();
+        table.endPc = input.readUnsignedShort();
+        table.handlerPc = input.readUnsignedShort();
+        table.catchType = input.readUnsignedShort();
+        return table;
     }
 }

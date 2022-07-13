@@ -21,13 +21,14 @@ import java.util.List;
  * }
  */
 @Getter
-public class AttributeRecordComponentItem {
+public class AttributeRecordComponentItem extends AttributeItem {
     private int                  nameIndex;
     private int             descriptorIndex;
     private List<Attribute> attributes;
 
     public static AttributeRecordComponentItem parseData(DataInput input, ClassFile classFile) throws IOException {
         AttributeRecordComponentItem table = new AttributeRecordComponentItem();
+        table.classFile = classFile;
         table.nameIndex = input.readUnsignedShort();
         table.descriptorIndex = input.readUnsignedShort();
         table.attributes = ClassFileParser.parseAttribute(input, classFile);

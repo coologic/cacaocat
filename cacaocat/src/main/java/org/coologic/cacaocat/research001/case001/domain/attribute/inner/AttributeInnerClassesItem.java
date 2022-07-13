@@ -1,6 +1,7 @@
 package org.coologic.cacaocat.research001.case001.domain.attribute.inner;
 
 import lombok.Getter;
+import org.coologic.cacaocat.research001.case001.domain.ClassFile;
 
 import java.io.DataInput;
 import java.io.IOException;
@@ -18,14 +19,15 @@ import java.io.IOException;
  * * }
  */
 @Getter
-public class AttributeInnerClassesItem {
+public class AttributeInnerClassesItem extends AttributeItem {
     private int innerClassInfoIndex;
     private int outerClassInfoIndex;
     private int innerNameIndex;
     private int innerClassAccessFlags;
 
-    public static AttributeInnerClassesItem parseData(DataInput input) throws IOException {
+    public static AttributeInnerClassesItem parseData(DataInput input, ClassFile classFile) throws IOException {
         AttributeInnerClassesItem table = new AttributeInnerClassesItem();
+        table.classFile = classFile;
         table.innerClassInfoIndex = input.readUnsignedShort();
         table.outerClassInfoIndex = input.readUnsignedShort();
         table.innerNameIndex = input.readUnsignedShort();

@@ -52,7 +52,7 @@ public class AttributeCode extends AbstractAttribute {
         input.readFully(code);
         int exceptionTableLength = input.readUnsignedShort();
         while (exceptionTables.size() < exceptionTableLength) {
-            this.exceptionTables.add(AttributeCodeExceptionItem.parseData(input));
+            this.exceptionTables.add(AttributeCodeExceptionItem.parseData(input, classFile));
         }
 
         attributes =  ClassFileParser.parseAttribute(input, classFile);

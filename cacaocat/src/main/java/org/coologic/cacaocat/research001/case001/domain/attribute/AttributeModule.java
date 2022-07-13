@@ -3,7 +3,6 @@ package org.coologic.cacaocat.research001.case001.domain.attribute;
 import lombok.Getter;
 import org.coologic.cacaocat.research001.case001.ClassFileParser;
 import org.coologic.cacaocat.research001.case001.domain.ClassFile;
-import org.coologic.cacaocat.research001.case001.domain.attribute.inner.AttributeMethodParametersItem;
 import org.coologic.cacaocat.research001.case001.domain.attribute.inner.AttributeModuleExportItem;
 import org.coologic.cacaocat.research001.case001.domain.attribute.inner.AttributeModuleProvideItem;
 import org.coologic.cacaocat.research001.case001.domain.attribute.inner.AttributeModuleRequireItem;
@@ -83,15 +82,15 @@ public class AttributeModule extends AbstractAttribute {
 
         int size = input.readUnsignedByte();
         while (requires.size() < size) {
-            requires.add(AttributeModuleRequireItem.parseData(input));
+            requires.add(AttributeModuleRequireItem.parseData(input, classFile));
         }
         size = input.readUnsignedByte();
         while (exports.size() < size) {
-            exports.add(AttributeModuleExportItem.parseData(input));
+            exports.add(AttributeModuleExportItem.parseData(input, classFile));
         }
         size = input.readUnsignedByte();
         while (opens.size() < size) {
-            opens.add(AttributeModuleRequireItem.parseData(input));
+            opens.add(AttributeModuleRequireItem.parseData(input, classFile));
         }
         size = input.readUnsignedByte();
         while (usesIndex.size() < size) {
@@ -99,7 +98,7 @@ public class AttributeModule extends AbstractAttribute {
         }
         size = input.readUnsignedByte();
         while (provides.size() < size) {
-            provides.add(AttributeModuleProvideItem.parseData(input));
+            provides.add(AttributeModuleProvideItem.parseData(input, classFile));
         }
     }
 

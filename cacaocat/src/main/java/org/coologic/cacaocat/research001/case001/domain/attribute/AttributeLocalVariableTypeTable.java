@@ -7,6 +7,7 @@ import org.coologic.cacaocat.research001.case001.domain.type.AttributeTypeEnum;
 
 import java.io.DataInput;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,7 +25,7 @@ import java.util.List;
  */
 @Getter
 public class AttributeLocalVariableTypeTable extends AbstractAttribute {
-    List<AttributeLocalVariableTypeItem> tables;
+    List<AttributeLocalVariableTypeItem> tables = new ArrayList<>();
 
     public AttributeLocalVariableTypeTable(ClassFile classFile) {
         super(classFile);
@@ -34,7 +35,7 @@ public class AttributeLocalVariableTypeTable extends AbstractAttribute {
     public void parseData(DataInput input) throws IOException {
         int count = input.readUnsignedShort();
         while (tables.size() < count) {
-            tables.add(AttributeLocalVariableTypeItem.parseData(input));
+            tables.add(AttributeLocalVariableTypeItem.parseData(input, classFile));
         }
     }
 

@@ -1,12 +1,10 @@
 package org.coologic.cacaocat.research001.case001.domain.attribute.inner;
 
-import graphql.util.Pair;
 import lombok.Getter;
+import org.coologic.cacaocat.research001.case001.domain.ClassFile;
 
 import java.io.DataInput;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * type_annotation {
@@ -32,10 +30,12 @@ import java.util.List;
  * }
  */
 @Getter
-public class AttributeTypeAnnotationItem {
+public class AttributeTypeAnnotationItem extends AttributeItem {
 //todo 没写完
-    public static AttributeTypeAnnotationItem parseData(DataInput input) throws IOException {
+    public static AttributeTypeAnnotationItem parseData(DataInput input,
+                                                        ClassFile classFile) throws IOException {
         AttributeTypeAnnotationItem table = new AttributeTypeAnnotationItem();
+        table.classFile = classFile;
         //table.typeIndex = input.readUnsignedShort();
         //int numElementValuePairs = input.readUnsignedShort();
         //while (table.elementValuePairs.size() < numElementValuePairs) {

@@ -1,14 +1,15 @@
 package org.coologic.cacaocat.research001.case001.domain;
 
-import lombok.Data;
-import org.coologic.cacaocat.research001.case001.domain.attribute.AbstractAttribute;
+import lombok.Getter;
+import lombok.Setter;
 import org.coologic.cacaocat.research001.case001.domain.attribute.Attribute;
 import org.coologic.cacaocat.research001.case001.domain.constant.Constant;
 import org.coologic.cacaocat.research001.case001.domain.type.AccessFlagEnum;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 public class ClassFile {
     /**
      * 魔数 u4
@@ -71,7 +72,7 @@ public class ClassFile {
      */
     public void setMagic(int magic) {
         this.magic = magic;
-        if(magic != 0xCAFEBABE) {
+        if (magic != 0xCAFEBABE) {
             throw new IllegalArgumentException("parseClassFile error,class file magic is not 0xCAFEBABE");
         }
     }

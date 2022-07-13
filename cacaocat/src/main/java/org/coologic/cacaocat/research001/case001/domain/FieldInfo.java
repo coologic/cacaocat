@@ -1,13 +1,16 @@
 package org.coologic.cacaocat.research001.case001.domain;
 
-import lombok.Data;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 import org.coologic.cacaocat.research001.case001.domain.attribute.Attribute;
 import org.coologic.cacaocat.research001.case001.domain.type.AccessFlagEnum;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 public class FieldInfo {
 
     ClassFile classFile;
@@ -15,7 +18,7 @@ public class FieldInfo {
     /**
      * 访问标志
      */
-    int                  accessFlagTag;
+    int accessFlagTag;
     List<AccessFlagEnum> accessFlags;
 
     /**
@@ -37,13 +40,21 @@ public class FieldInfo {
         this.classFile = classFile;
     }
 
-    public String getDesc() {
+    public String getName() {
+        return classFile.getConstants().get(nameIndex).getDesc();
+    }
+
+    public String getDescriptor() {
+        return classFile.getConstants().get(descriptorIndex).getDesc();
+    }
+
+    @Override
+    public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         accessFlags.forEach(o -> stringBuilder.append(o.getCode()).append(" "));
-        stringBuilder.append(classFile.getConstants().get(descriptorIndex).getDesc())
+        stringBuilder.append(getDescriptor())
                 .append(" ")
-                .append(classFile.getConstants().get(nameIndex).getDesc());
-        attributes.forEach(o -> stringBuilder.append("\n    ").append(o.getDesc()));
+                .append(getName());
         return stringBuilder.toString();
     }
 }

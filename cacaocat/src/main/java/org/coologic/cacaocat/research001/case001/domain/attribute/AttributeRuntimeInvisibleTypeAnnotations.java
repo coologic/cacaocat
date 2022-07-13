@@ -30,7 +30,7 @@ public class AttributeRuntimeInvisibleTypeAnnotations extends AbstractAttribute 
     public void parseData(DataInput input) throws IOException {
         int componetCount = input.readUnsignedShort();
         while (annotations.size() < componetCount) {
-            annotations.add(AttributeTypeAnnotationItem.parseData(input));
+            annotations.add(AttributeTypeAnnotationItem.parseData(input, classFile));
         }
     }
 

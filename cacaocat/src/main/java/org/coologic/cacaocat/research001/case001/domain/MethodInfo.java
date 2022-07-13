@@ -1,17 +1,17 @@
 package org.coologic.cacaocat.research001.case001.domain;
 
-import lombok.Data;
-import org.coologic.cacaocat.research001.case001.domain.attribute.AbstractAttribute;
+import lombok.Getter;
+import lombok.Setter;
 import org.coologic.cacaocat.research001.case001.domain.attribute.Attribute;
 import org.coologic.cacaocat.research001.case001.domain.type.AccessFlagEnum;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 public class MethodInfo {
 
     ClassFile classFile;
-
 
     /**
      * 访问标志
@@ -22,12 +22,12 @@ public class MethodInfo {
     /**
      * 方法名索引
      */
-    int             nameIndex;
+    int nameIndex;
 
     /**
      * 描述索引
      */
-    int             descriptorIndex;
+    int descriptorIndex;
 
     /**
      * 属性
@@ -38,15 +38,19 @@ public class MethodInfo {
         this.classFile = classFile;
     }
 
-    public String getDesc() {
+    public String getName() {
+        return classFile.getConstants().get(nameIndex).getDesc();
+    }
+
+    public String getDescriptor() {
+        return classFile.getConstants().get(descriptorIndex).getDesc();
+    }
+
+    @Override
+    public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        accessFlags.forEach(o-> stringBuilder.append(o.getCode()).append(" "));
-        stringBuilder.append(classFile.getConstants().get(descriptorIndex).getDesc())
-                .append(" ")
-                .append(classFile.getConstants().get(nameIndex).getDesc())
-                .append(" [");
-        abstractAttributes.forEach(o-> stringBuilder.append(o.getDesc()));
-        stringBuilder.append("]");
+        accessFlags.forEach(o -> stringBuilder.append(o.getCode()).append(" "));
+        stringBuilder.append(getDescriptor()).append(" ").append(getName());
         return stringBuilder.toString();
     }
 }

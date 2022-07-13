@@ -3,7 +3,6 @@ package org.coologic.cacaocat.research001.case001.domain.attribute;
 import lombok.Getter;
 import org.coologic.cacaocat.research001.case001.domain.ClassFile;
 import org.coologic.cacaocat.research001.case001.domain.attribute.inner.AttributeBootstrapMethodsItem;
-import org.coologic.cacaocat.research001.case001.domain.attribute.inner.AttributeLineNumberItem;
 import org.coologic.cacaocat.research001.case001.domain.type.AttributeTypeEnum;
 
 import java.io.DataInput;
@@ -34,7 +33,7 @@ public class AttributeBootstrapMethods extends AbstractAttribute {
     public void parseData(DataInput input) throws IOException {
         int length = input.readUnsignedShort();
         while (items.size() < length) {
-            items.add(AttributeBootstrapMethodsItem.parseData(input));
+            items.add(AttributeBootstrapMethodsItem.parseData(input, classFile));
         }
     }
 

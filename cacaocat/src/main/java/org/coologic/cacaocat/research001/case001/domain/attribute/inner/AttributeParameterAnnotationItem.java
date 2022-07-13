@@ -1,9 +1,7 @@
 package org.coologic.cacaocat.research001.case001.domain.attribute.inner;
 
 import lombok.Getter;
-import org.coologic.cacaocat.research001.case001.ClassFileParser;
 import org.coologic.cacaocat.research001.case001.domain.ClassFile;
-import org.coologic.cacaocat.research001.case001.domain.attribute.Attribute;
 
 import java.io.DataInput;
 import java.io.IOException;
@@ -21,14 +19,15 @@ import java.util.List;
  * }
  */
 @Getter
-public class AttributeParameterAnnotationItem {
+public class AttributeParameterAnnotationItem extends AttributeItem {
     private List<AttributeAnnotationItem> annotations = new ArrayList<>();
 
     public static AttributeParameterAnnotationItem parseData(DataInput input, ClassFile classFile) throws IOException {
         AttributeParameterAnnotationItem table = new AttributeParameterAnnotationItem();
+        table.classFile = classFile;
         int count = input.readUnsignedShort();
         while (table.annotations.size() < count) {
-            table.annotations.add(AttributeAnnotationItem.parseData(input));
+            table.annotations.add(AttributeAnnotationItem.parseData(input, classFile));
         }
         return table;
     }

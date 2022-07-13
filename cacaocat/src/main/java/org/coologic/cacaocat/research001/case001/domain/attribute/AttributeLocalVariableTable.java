@@ -2,7 +2,6 @@ package org.coologic.cacaocat.research001.case001.domain.attribute;
 
 import lombok.Getter;
 import org.coologic.cacaocat.research001.case001.domain.ClassFile;
-import org.coologic.cacaocat.research001.case001.domain.attribute.inner.AttributeLineNumberItem;
 import org.coologic.cacaocat.research001.case001.domain.attribute.inner.AttributeLocalVariableTableItem;
 import org.coologic.cacaocat.research001.case001.domain.type.AttributeTypeEnum;
 
@@ -36,7 +35,7 @@ public class AttributeLocalVariableTable extends AbstractAttribute {
     public void parseData(DataInput input) throws IOException {
         int length = input.readUnsignedShort();
         while (items.size() < length) {
-            items.add(AttributeLocalVariableTableItem.parseData(input));
+            items.add(AttributeLocalVariableTableItem.parseData(input, classFile));
         }
     }
 

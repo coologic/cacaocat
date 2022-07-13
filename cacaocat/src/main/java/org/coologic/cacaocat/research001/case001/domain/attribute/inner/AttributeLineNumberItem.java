@@ -1,6 +1,7 @@
 package org.coologic.cacaocat.research001.case001.domain.attribute.inner;
 
 import lombok.Getter;
+import org.coologic.cacaocat.research001.case001.domain.ClassFile;
 
 import java.io.DataInput;
 import java.io.IOException;
@@ -16,12 +17,13 @@ import java.io.IOException;
  * }
  */
 @Getter
-public class AttributeLineNumberItem {
+public class AttributeLineNumberItem extends AttributeItem {
     private int startPc;
     private int lineNumber;
 
-    public static AttributeLineNumberItem parseData(DataInput input) throws IOException {
+    public static AttributeLineNumberItem parseData(DataInput input, ClassFile classFile) throws IOException {
         AttributeLineNumberItem table = new AttributeLineNumberItem();
+        table.classFile = classFile;
         table.startPc = input.readUnsignedShort();
         table.lineNumber = input.readUnsignedShort();
         return table;

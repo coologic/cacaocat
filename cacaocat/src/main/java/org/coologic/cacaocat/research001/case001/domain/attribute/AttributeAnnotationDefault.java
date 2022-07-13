@@ -3,13 +3,10 @@ package org.coologic.cacaocat.research001.case001.domain.attribute;
 import lombok.Getter;
 import org.coologic.cacaocat.research001.case001.domain.ClassFile;
 import org.coologic.cacaocat.research001.case001.domain.attribute.inner.AttributeElementValueItem;
-import org.coologic.cacaocat.research001.case001.domain.attribute.inner.AttributeTypeAnnotationItem;
 import org.coologic.cacaocat.research001.case001.domain.type.AttributeTypeEnum;
 
 import java.io.DataInput;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * AnnotationDefault_attribute {
@@ -28,7 +25,7 @@ public class AttributeAnnotationDefault extends AbstractAttribute {
 
     @Override
     public void parseData(DataInput input) throws IOException {
-        defaultValue = AttributeElementValueItem.parseData(input);
+        defaultValue = AttributeElementValueItem.parseData(input, classFile);
     }
 
     @Override

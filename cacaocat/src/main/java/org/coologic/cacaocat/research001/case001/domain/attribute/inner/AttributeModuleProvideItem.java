@@ -1,6 +1,7 @@
 package org.coologic.cacaocat.research001.case001.domain.attribute.inner;
 
 import lombok.Getter;
+import org.coologic.cacaocat.research001.case001.domain.ClassFile;
 
 import java.io.DataInput;
 import java.io.IOException;
@@ -47,12 +48,14 @@ import java.util.List;
  * * }
  */
 @Getter
-public class AttributeModuleProvideItem {
+public class AttributeModuleProvideItem extends AttributeItem {
     private int           nameIndex;
     private List<Integer> withIndex = new ArrayList<>();
 
-    public static AttributeModuleProvideItem parseData(DataInput input) throws IOException {
+    public static AttributeModuleProvideItem parseData(DataInput input,
+                                                       ClassFile classFile) throws IOException {
         AttributeModuleProvideItem table = new AttributeModuleProvideItem();
+        table.classFile = classFile;
         table.nameIndex = input.readUnsignedShort();
 
         int exportsToCount = input.readUnsignedShort();

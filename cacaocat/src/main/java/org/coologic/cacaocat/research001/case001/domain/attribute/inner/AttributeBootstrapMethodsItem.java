@@ -1,9 +1,7 @@
 package org.coologic.cacaocat.research001.case001.domain.attribute.inner;
 
 import lombok.Getter;
-import org.coologic.cacaocat.research001.case001.ClassFileParser;
-import org.coologic.cacaocat.research001.case001.domain.type.AccessFlagEnum;
-import org.coologic.cacaocat.research001.case001.domain.type.AccessFlagEnumSet;
+import org.coologic.cacaocat.research001.case001.domain.ClassFile;
 
 import java.io.DataInput;
 import java.io.IOException;
@@ -22,13 +20,15 @@ import java.util.List;
  *  * }
  */
 @Getter
-public class AttributeBootstrapMethodsItem {
+public class AttributeBootstrapMethodsItem extends AttributeItem {
     private int           bootstrapMethodRef;
     private int           numBootstrapArguments;
     private List<Integer> bootstrapArguments = new ArrayList<>();
 
-    public static AttributeBootstrapMethodsItem parseData(DataInput input) throws IOException {
+    public static AttributeBootstrapMethodsItem parseData(DataInput input,
+                                                          ClassFile classFile) throws IOException {
         AttributeBootstrapMethodsItem table = new AttributeBootstrapMethodsItem();
+        table.classFile = classFile;
         table.bootstrapMethodRef = input.readUnsignedShort();
         table.numBootstrapArguments = input.readUnsignedShort();
         while (table.bootstrapArguments.size() < table.numBootstrapArguments) {

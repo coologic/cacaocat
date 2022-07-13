@@ -2,7 +2,6 @@ package org.coologic.cacaocat.research001.case001.domain.attribute;
 
 import lombok.Getter;
 import org.coologic.cacaocat.research001.case001.domain.ClassFile;
-import org.coologic.cacaocat.research001.case001.domain.attribute.inner.AttributeLocalVariableTableItem;
 import org.coologic.cacaocat.research001.case001.domain.attribute.inner.AttributeMethodParametersItem;
 import org.coologic.cacaocat.research001.case001.domain.type.AttributeTypeEnum;
 
@@ -33,7 +32,7 @@ public class AttributeMethodParameters extends AbstractAttribute {
     public void parseData(DataInput input) throws IOException {
         int length = input.readUnsignedByte();
         while (items.size() < length) {
-            items.add(AttributeMethodParametersItem.parseData(input));
+            items.add(AttributeMethodParametersItem.parseData(input, classFile));
         }
     }
 

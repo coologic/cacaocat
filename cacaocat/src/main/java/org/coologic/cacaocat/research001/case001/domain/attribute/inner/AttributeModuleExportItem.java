@@ -2,6 +2,7 @@ package org.coologic.cacaocat.research001.case001.domain.attribute.inner;
 
 import lombok.Getter;
 import org.coologic.cacaocat.research001.case001.ClassFileParser;
+import org.coologic.cacaocat.research001.case001.domain.ClassFile;
 import org.coologic.cacaocat.research001.case001.domain.type.AccessFlagEnum;
 import org.coologic.cacaocat.research001.case001.domain.type.AccessFlagEnumSet;
 
@@ -50,14 +51,15 @@ import java.util.List;
  * * }
  */
 @Getter
-public class AttributeModuleExportItem {
+public class AttributeModuleExportItem extends AttributeItem {
     private int                  nameIndex;
     private int                  flagsCode;
     private List<AccessFlagEnum> exportsFlags;
     private List<Integer>        toIndex = new ArrayList<>();
 
-    public static AttributeModuleExportItem parseData(DataInput input) throws IOException {
+    public static AttributeModuleExportItem parseData(DataInput input, ClassFile classFile) throws IOException {
         AttributeModuleExportItem table = new AttributeModuleExportItem();
+        table.classFile = classFile;
         table.nameIndex = input.readUnsignedShort();
         table.flagsCode = input.readUnsignedShort();
         table.exportsFlags = ClassFileParser.parseFlag(table.flagsCode, AccessFlagEnumSet.EXPORTS_TYPE);

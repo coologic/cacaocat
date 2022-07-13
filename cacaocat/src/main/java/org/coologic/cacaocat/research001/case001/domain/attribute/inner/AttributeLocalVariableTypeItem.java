@@ -1,6 +1,7 @@
 package org.coologic.cacaocat.research001.case001.domain.attribute.inner;
 
 import lombok.Getter;
+import org.coologic.cacaocat.research001.case001.domain.ClassFile;
 
 import java.io.DataInput;
 import java.io.IOException;
@@ -19,15 +20,17 @@ import java.io.IOException;
  * }
  */
 @Getter
-public class AttributeLocalVariableTypeItem {
+public class AttributeLocalVariableTypeItem extends AttributeItem {
     int startPc;
     int length;
     int nameIndex;
     int signatureIndex;
     int index;
 
-    public static AttributeLocalVariableTypeItem parseData(DataInput input) throws IOException {
+    public static AttributeLocalVariableTypeItem parseData(DataInput input,
+                                                           ClassFile classFile) throws IOException {
         AttributeLocalVariableTypeItem table = new AttributeLocalVariableTypeItem();
+        table.classFile = classFile;
         table.startPc = input.readUnsignedShort();
         table.length = input.readUnsignedShort();
         table.nameIndex = input.readUnsignedShort();

@@ -17,5 +17,10 @@ public abstract class AbstractConstant implements Constant {
         parseData(input);
     }
 
+    @Override
+    public String toString() {
+        return getDesc();
+    }
+
     abstract public void parseData(DataInput input) throws IOException;
 }

@@ -2,6 +2,7 @@ package org.coologic.cacaocat.research001.case001.domain.attribute.inner;
 
 import graphql.util.Pair;
 import lombok.Getter;
+import org.coologic.cacaocat.research001.case001.domain.ClassFile;
 
 import java.io.DataInput;
 import java.io.IOException;
@@ -18,16 +19,18 @@ import java.util.List;
  * }
  */
 @Getter
-public class AttributeAnnotationItem {
+public class AttributeAnnotationItem extends AttributeItem {
     private int                                            typeIndex;
     private List<Pair<Integer,AttributeElementValueItem >> elementValuePairs = new ArrayList<>();
 
-    public static AttributeAnnotationItem parseData(DataInput input) throws IOException {
+    public static AttributeAnnotationItem parseData(DataInput input, ClassFile classFile) throws IOException {
         AttributeAnnotationItem table = new AttributeAnnotationItem();
+        table.classFile = classFile;
         table.typeIndex = input.readUnsignedShort();
         int numElementValuePairs = input.readUnsignedShort();
         while (table.elementValuePairs.size() < numElementValuePairs) {
-            Pair<Integer, AttributeElementValueItem> pair = new Pair<>(input.readUnsignedShort(), AttributeElementValueItem.parseData(input));
+            Pair<Integer, AttributeElementValueItem> pair = new Pair<>(input.readUnsignedShort(), AttributeElementValueItem.parseData(input,
+                    classFile));
             table.elementValuePairs.add(pair);
         }
         return table;

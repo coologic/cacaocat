@@ -1,12 +1,10 @@
 package org.coologic.cacaocat.research001.case001.domain.attribute.inner;
 
 import lombok.Getter;
-import org.coologic.cacaocat.research001.case001.ClassFileParser;
 import org.coologic.cacaocat.research001.case001.domain.ClassFile;
 
 import java.io.DataInput;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * element_value {
@@ -29,12 +27,13 @@ import java.util.List;
  * }
  */
 @Getter
-public class AttributeElementValueItem {
+public class AttributeElementValueItem extends AttributeItem {
     //private int             type_index;
     //private List<Pair<Integer, >> annotations;
 //todo 未完成
-    public static AttributeElementValueItem parseData(DataInput input) throws IOException {
+    public static AttributeElementValueItem parseData(DataInput input, ClassFile classFile) throws IOException {
         AttributeElementValueItem table = new AttributeElementValueItem();
+        table.classFile = classFile;
         //table.numAnnotations = input.readUnsignedShort();
         //whil
         //table.descriptorIndex = input.readUnsignedShort();

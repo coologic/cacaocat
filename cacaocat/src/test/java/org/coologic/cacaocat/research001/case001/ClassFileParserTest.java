@@ -1,6 +1,8 @@
 package org.coologic.cacaocat.research001.case001;
 
 import org.coologic.cacaocat.research001.case001.domain.ClassFile;
+import org.coologic.cacaocat.research001.case001.domain.FieldInfo;
+import org.coologic.cacaocat.research001.case001.domain.MethodInfo;
 import org.coologic.cacaocat.research001.case001.domain.constant.Constant;
 import org.coologic.cacaocat.research001.case001.domain.type.AttributeTypeEnum;
 import org.coologic.cacaocat.research001.case001.domain.type.ConstantTypeEnum;
@@ -16,10 +18,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class ClassFileParserTest {
     @Test
     void testParse() throws IOException {
-        String path = System.getProperty("user.dir") + "/src/test/resources/bytecode/case001.class";
+        String path = System.getProperty("user.dir") + "/src/test/resources/bytecode/case002.class";
         DataInput dataInput = FileReader.readClassFile(path);
         ClassFile classFile = ClassFileParser.parseClassFile(dataInput);
         assertNotNull(classFile);
+        String s = classFile.toString();
         assertEquals(0xCAFEBABE, classFile.getMagic());
     }
 
@@ -40,7 +43,13 @@ class ClassFileParserTest {
         DataInput dataInput = FileReader.readClassFile(path);
         ClassFile classFile = ClassFileParser.parseClassFile(dataInput);
         for (int i = 0; i < classFile.getFields().size(); i++) {
-            System.out.println(classFile.getFields().get(i).getDesc());
+            FieldInfo fieldInfo = classFile.getFields().get(i);
+            StringBuilder stringBuilder = new StringBuilder();
+            fieldInfo.getAccessFlags().forEach(o -> stringBuilder.append(o.getCode()).append(" "));
+            stringBuilder.append(fieldInfo.getDescriptor())
+                    .append(" ")
+                    .append(fieldInfo.getName());
+            System.out.println(stringBuilder.toString());
         }
     }
 
@@ -50,7 +59,11 @@ class ClassFileParserTest {
         DataInput dataInput = FileReader.readClassFile(path);
         ClassFile classFile = ClassFileParser.parseClassFile(dataInput);
         for (int i = 0; i < classFile.getMethods().size(); i++) {
-            System.out.println(classFile.getMethods().get(i).getDesc());
+            MethodInfo methodInfo = classFile.getMethods().get(i);
+            StringBuilder stringBuilder = new StringBuilder();
+            methodInfo.getAccessFlags().forEach(o -> stringBuilder.append(o.getCode()).append(" "));
+            stringBuilder.append(methodInfo.getDescriptor()).append(" ").append(methodInfo.getName());
+            System.out.println(stringBuilder.toString());
         }
     }
 

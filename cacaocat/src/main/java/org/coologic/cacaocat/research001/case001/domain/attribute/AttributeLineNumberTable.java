@@ -32,7 +32,7 @@ public class AttributeLineNumberTable extends AbstractAttribute {
     public void parseData(DataInput input) throws IOException {
         int length = input.readUnsignedShort();
         while (items.size() < length) {
-            items.add(AttributeLineNumberItem.parseData(input));
+            items.add(AttributeLineNumberItem.parseData(input, classFile));
         }
     }
 
