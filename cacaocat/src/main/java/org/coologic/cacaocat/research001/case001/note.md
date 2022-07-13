@@ -62,3 +62,11 @@ ClassFile {
 access_flags 这个需要根据不同级别 类、方法、字段，确定可用的标记，然后数据里存的是标记的和结果，需要自己拆解成多个标记 比如 public static 标记存储的值是 0x0001 + 0x0008 = 0x0009 
 
 另外暂时对于 Attribute 的处理先不做，此时已经满足了方法名称的获取能力了，尝试进行一下关联并打印数据，比较结果正确性
+
+
+attribute 的处理过于复杂，且不同类型长度不一致、格式多重嵌套，因此设计时，每一个 attribute 根据length直接取出了原始数据并存储，内部的解析处理针对取出值进行操作，保证每个 attribute 之间的解析逻辑不会互相影响
+
+完成了整体文件结构的解析后，对于特殊的 attribute 需要针对性处理，特别是 code 类型的，需要进行 jvm 指令解析。具体参考文档 [jvm指令介绍](https://docs.oracle.com/javase/specs/jvms/se16/html/jvms-6.html#jvms-6.5)
+
+> 对于 code 类型属性以及指令集的整体规则不理解的可以先看 [The Code Attribute](https://docs.oracle.com/javase/specs/jvms/se16/html/jvms-4.html#jvms-4.7.3)、[Constraints on Java Virtual Machine Code](https://docs.oracle.com/javase/specs/jvms/se16/html/jvms-4.html#jvms-4.9)
+
