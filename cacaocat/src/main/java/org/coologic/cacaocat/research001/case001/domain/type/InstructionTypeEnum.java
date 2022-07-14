@@ -14,6 +14,7 @@ public enum InstructionTypeEnum {
     METHOD_INVOCATION_AND_RETURN("MethodInvocationAndReturn", "方法调用与返回指令"),
     THROWING("Throwing", "异常处理指令"),
     SYNCHRONIZATION("Synchronization", "同步指令"),
+    NO_TYPE("NO_TYPE", "无分类信息"),
     ;
 
     private final String type;
