@@ -88,7 +88,7 @@ public enum AttributeTypeEnum {
         this.createFunction = createFunction;
     }
 
-    public static AttributeTypeEnum getByAttributeName(String tag) {
+    public static AttributeTypeEnum getByCode(String tag) {
         for (var value : AttributeTypeEnum.values()) {
             if (value.getCode().equals(tag)) {
                 return value;
