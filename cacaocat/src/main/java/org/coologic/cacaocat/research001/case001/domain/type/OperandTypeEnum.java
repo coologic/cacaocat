@@ -6,6 +6,8 @@ import lombok.Getter;
 @Getter
 public enum OperandTypeEnum {
     ZERO_OPERAND("ZERO_OPERAND", "无操作数类型"),
+    BYTE_OPERAND("BYTE_OPERAND", "字节操作数类型-若前序操作码为wide则为2字节"),
+    SHORT_OPERAND("SHORT_OPERAND", "2字节操作数类型"),
     ;
 
     private final String type;
