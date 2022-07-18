@@ -5,8 +5,12 @@ import org.coologic.cacaocat.research001.case001.ClassFileParser;
 import org.coologic.cacaocat.research001.case001.domain.ClassFile;
 import org.coologic.cacaocat.research001.case001.domain.attribute.inner.AttributeCodeExceptionItem;
 import org.coologic.cacaocat.research001.case001.domain.type.AttributeTypeEnum;
+import org.coologic.cacaocat.research001.case001.utils.ObservableByteArrayInputStream;
 
+import javax.print.DocFlavor.INPUT_STREAM;
+import java.io.ByteArrayInputStream;
 import java.io.DataInput;
+import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
