@@ -22,4 +22,9 @@ public interface Instruction {
      */
     OpcodeTypeEnum type();
 
+    /**
+     * 当前指令长度 包括指令码的长度
+     * @return 长度
+     */
+    int size();
 }

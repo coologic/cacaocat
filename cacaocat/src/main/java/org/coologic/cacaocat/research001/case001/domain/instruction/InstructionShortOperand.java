@@ -17,4 +17,9 @@ public class InstructionShortOperand extends AbstractInstruction {
     public void parseData(DataInput input, boolean isWide) throws IOException {
         operand = input.readUnsignedShort();
     }
+
+    @Override
+    public int size() {
+        return super.size() + 2;
+    }
 }

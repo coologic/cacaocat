@@ -37,4 +37,9 @@ public abstract class AbstractInstruction implements Instruction {
     public String toString() {
         return String.format("#%d\t\t%s", 0, type().getCode());
     }
+
+    @Override
+    public int size() {
+        return 1;
+    }
 }

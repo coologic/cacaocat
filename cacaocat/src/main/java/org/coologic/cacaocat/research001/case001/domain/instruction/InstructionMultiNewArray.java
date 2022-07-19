@@ -24,4 +24,9 @@ public class InstructionMultiNewArray extends InstructionShortOperand {
         super.parseData(input, isWide);
         dimensions = input.readUnsignedByte();
     }
+
+    @Override
+    public int size() {
+        return super.size() + 3;
+    }
 }

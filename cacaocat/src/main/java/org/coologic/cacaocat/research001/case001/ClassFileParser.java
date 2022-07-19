@@ -6,6 +6,7 @@ import org.coologic.cacaocat.research001.case001.domain.MethodInfo;
 import org.coologic.cacaocat.research001.case001.domain.attribute.Attribute;
 import org.coologic.cacaocat.research001.case001.domain.constant.Constant;
 import org.coologic.cacaocat.research001.case001.domain.constant.ConstantUtf8;
+import org.coologic.cacaocat.research001.case001.domain.instruction.Instruction;
 import org.coologic.cacaocat.research001.case001.domain.type.AccessFlagEnum;
 import org.coologic.cacaocat.research001.case001.domain.type.AccessFlagEnumSet;
 import org.coologic.cacaocat.research001.case001.domain.type.AttributeTypeEnum;
@@ -155,5 +156,9 @@ public class ClassFileParser {
         }
         assert sumTag == flagTag;
         return result;
+    }
+
+    public static List<Instruction> parseInstruction(DataInput input, ClassFile classFile) throws IOException{
+        return null;
     }
 }

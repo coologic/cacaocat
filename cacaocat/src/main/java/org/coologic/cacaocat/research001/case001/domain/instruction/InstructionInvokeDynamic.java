@@ -25,4 +25,9 @@ public class InstructionInvokeDynamic extends InstructionShortOperand {
         super.parseData(input, isWide);
         input.readUnsignedShort();
     }
+
+    @Override
+    public int size() {
+        return super.size() + 4;
+    }
 }

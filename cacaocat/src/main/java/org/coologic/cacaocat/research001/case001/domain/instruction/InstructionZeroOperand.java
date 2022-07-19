@@ -13,6 +13,6 @@ public class InstructionZeroOperand extends AbstractInstruction {
 
     @Override
     public void parseData(DataInput input, boolean isWide) throws IOException {
-
+        //无操作数不需要解析
     }
 }

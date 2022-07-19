@@ -17,7 +17,7 @@ public class FieldInfo {
     /**
      * 访问标志
      */
-    int accessFlagTag;
+    int                  accessFlagTag;
     List<AccessFlagEnum> accessFlags;
 
     /**

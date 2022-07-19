@@ -4,6 +4,7 @@ import lombok.Getter;
 import org.coologic.cacaocat.research001.case001.ClassFileParser;
 import org.coologic.cacaocat.research001.case001.domain.ClassFile;
 import org.coologic.cacaocat.research001.case001.domain.attribute.inner.AttributeCodeExceptionItem;
+import org.coologic.cacaocat.research001.case001.domain.instruction.Instruction;
 import org.coologic.cacaocat.research001.case001.domain.type.AttributeTypeEnum;
 import org.coologic.cacaocat.research001.case001.utils.ObservableByteArrayInputStream;
 
@@ -12,6 +13,7 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInput;
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,8 +40,9 @@ public class AttributeCode extends AbstractAttribute {
     private int        maxStack;
     private int        maxLocals;
     private int        codeLength;
-    //todo 具体值暂时没处理
     private byte[]                           code;
+    private List<Instruction> instructions;
+
     private List<AttributeCodeExceptionItem> exceptionTables = new ArrayList<>();
     private List<Attribute>                  attributes      = new ArrayList<>();
 
@@ -60,6 +63,9 @@ public class AttributeCode extends AbstractAttribute {
         }
 
         attributes =  ClassFileParser.parseAttribute(input, classFile);
+
+        //解析指令
+        instructions = ClassFileParser.parseInstruction(new DataInputStream(new ByteArrayInputStream(code)), classFile);
     }
 
     @Override
