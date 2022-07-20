@@ -5,7 +5,6 @@ import lombok.Setter;
 import org.coologic.cacaocat.research001.case001.domain.ClassFile;
 import org.coologic.cacaocat.research001.case001.domain.type.OpcodeTypeEnum;
 
-import java.io.ByteArrayInputStream;
 import java.io.DataInput;
 import java.io.IOException;
 
@@ -15,6 +14,8 @@ public abstract class AbstractInstruction implements Instruction {
 
     protected ClassFile classFile;
 
+    protected int index;
+
     protected OpcodeTypeEnum type;
 
     public AbstractInstruction(ClassFile classFile) {
@@ -22,7 +23,9 @@ public abstract class AbstractInstruction implements Instruction {
     }
 
     @Override
-    public void parse(DataInput input, OpcodeTypeEnum type, boolean wide) throws IOException {
+    public void parse(DataInput input, OpcodeTypeEnum type, boolean wide, int index) throws IOException {
+        this.index = index;
+        this.type = type;
         parseData(input, wide);
     }
 
@@ -35,7 +38,7 @@ public abstract class AbstractInstruction implements Instruction {
 
     @Override
     public String toString() {
-        return String.format("#%d\t\t%s", 0, type().getCode());
+        return String.format("#%d\t\t%s", index, type().getCode());
     }
 
     @Override

@@ -26,4 +26,9 @@ public class InstructionInvokeInterface extends InstructionShortOperand {
         count = input.readUnsignedByte();
         input.readUnsignedByte();
     }
+
+    @Override
+    public int size() {
+        return super.size() + 2;
+    }
 }

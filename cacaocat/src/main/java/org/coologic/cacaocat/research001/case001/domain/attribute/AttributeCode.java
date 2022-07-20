@@ -6,14 +6,11 @@ import org.coologic.cacaocat.research001.case001.domain.ClassFile;
 import org.coologic.cacaocat.research001.case001.domain.attribute.inner.AttributeCodeExceptionItem;
 import org.coologic.cacaocat.research001.case001.domain.instruction.Instruction;
 import org.coologic.cacaocat.research001.case001.domain.type.AttributeTypeEnum;
-import org.coologic.cacaocat.research001.case001.utils.ObservableByteArrayInputStream;
 
-import javax.print.DocFlavor.INPUT_STREAM;
 import java.io.ByteArrayInputStream;
 import java.io.DataInput;
 import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,7 +62,7 @@ public class AttributeCode extends AbstractAttribute {
         attributes =  ClassFileParser.parseAttribute(input, classFile);
 
         //解析指令
-        instructions = ClassFileParser.parseInstruction(new DataInputStream(new ByteArrayInputStream(code)), classFile);
+        instructions = ClassFileParser.parseInstruction(new DataInputStream(new ByteArrayInputStream(code)), classFile, code.length);
     }
 
     @Override

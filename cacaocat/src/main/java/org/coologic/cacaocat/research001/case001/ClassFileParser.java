@@ -11,6 +11,7 @@ import org.coologic.cacaocat.research001.case001.domain.type.AccessFlagEnum;
 import org.coologic.cacaocat.research001.case001.domain.type.AccessFlagEnumSet;
 import org.coologic.cacaocat.research001.case001.domain.type.AttributeTypeEnum;
 import org.coologic.cacaocat.research001.case001.domain.type.ConstantTypeEnum;
+import org.coologic.cacaocat.research001.case001.domain.type.OpcodeTypeEnum;
 
 import java.io.DataInput;
 import java.io.IOException;
@@ -158,7 +159,20 @@ public class ClassFileParser {
         return result;
     }
 
-    public static List<Instruction> parseInstruction(DataInput input, ClassFile classFile) throws IOException{
-        return null;
+    public static List<Instruction> parseInstruction(DataInput input, ClassFile classFile, int maxLength) throws IOException {
+        int currentSize = 0;
+        boolean wide = false;
+        List<Instruction> instructions = new ArrayList<>();
+        while (currentSize < maxLength) {
+            OpcodeTypeEnum opcodeTypeEnum = OpcodeTypeEnum.getByTag(input.readUnsignedByte());
+            Instruction instruction = opcodeTypeEnum.getOperandType().getCreateFunction().apply(classFile);
+            instruction.parse(input, opcodeTypeEnum, wide, currentSize);
+            instructions.add(instruction);
+            //下一个是否wide
+            wide = opcodeTypeEnum == OpcodeTypeEnum.WIDE;
+            //索引位置更新更新
+            currentSize += instruction.size();
+        }
+        return instructions;
     }
 }

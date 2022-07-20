@@ -27,6 +27,6 @@ public class InstructionMultiNewArray extends InstructionShortOperand {
 
     @Override
     public int size() {
-        return super.size() + 3;
+        return super.size() + 1;
     }
 }

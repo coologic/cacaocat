@@ -28,6 +28,6 @@ public class InstructionInvokeDynamic extends InstructionShortOperand {
 
     @Override
     public int size() {
-        return super.size() + 4;
+        return super.size() + 2;
     }
 }
