@@ -20,8 +20,8 @@ public class InstructionMultiNewArray extends InstructionShortOperand {
     }
 
     @Override
-    public void parseData(DataInput input, boolean isWide) throws IOException {
-        super.parseData(input, isWide);
+    public void parseData(DataInput input, boolean isWide, int index) throws IOException {
+        super.parseData(input, isWide, index);
         dimensions = input.readUnsignedByte();
     }
 

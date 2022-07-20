@@ -26,10 +26,10 @@ public abstract class AbstractInstruction implements Instruction {
     public void parse(DataInput input, OpcodeTypeEnum type, boolean wide, int index) throws IOException {
         this.index = index;
         this.type = type;
-        parseData(input, wide);
+        parseData(input, wide, index);
     }
 
-    abstract public void parseData(DataInput input, boolean isWide) throws IOException;
+    abstract public void parseData(DataInput input, boolean isWide, int index) throws IOException;
 
     @Override
     final public OpcodeTypeEnum type() {

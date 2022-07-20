@@ -15,7 +15,7 @@ public class InstructionByteOperand extends AbstractInstruction {
     }
 
     @Override
-    public void parseData(DataInput input, boolean isWide) throws IOException {
+    public void parseData(DataInput input, boolean isWide, int index) throws IOException {
         this.wide = isWide;
         operand = isWide ? input.readUnsignedShort() : input.readUnsignedByte();
     }
