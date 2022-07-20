@@ -205,8 +205,8 @@ public enum OpcodeTypeEnum {
     MULTIANEWARRAY(197, "multianewarray", OperandTypeEnum.MULTI_A_NEW_ARRAY, InstructionTypeEnum.OBJECT_CREATION_AND_MANIPULATION, ""),
     IFNULL(198, "ifnull", OperandTypeEnum.BRANCH, InstructionTypeEnum.CONTROL_TRANSFER, ""),
     IFNONNULL(199, "ifnonnull", OperandTypeEnum.BRANCH, InstructionTypeEnum.CONTROL_TRANSFER, ""),
-    GOTO_W(200, "goto_w", OperandTypeEnum.BRANCH, InstructionTypeEnum.CONTROL_TRANSFER, ""),
-    JSR_W(201, "jsr_w", OperandTypeEnum.BRANCH, InstructionTypeEnum.CONTROL_TRANSFER, ""),
+    GOTO_W(200, "goto_w", OperandTypeEnum.WIDE_BRANCH, InstructionTypeEnum.CONTROL_TRANSFER, ""),
+    JSR_W(201, "jsr_w", OperandTypeEnum.WIDE_BRANCH, InstructionTypeEnum.CONTROL_TRANSFER, ""),
     BREAKPOINT(202, "breakpoint", OperandTypeEnum.ZERO_OPERAND, InstructionTypeEnum.NO_TYPE, "调试断点操作码"),
     IMPDEP1(254, "impdep1", OperandTypeEnum.ZERO_OPERAND, InstructionTypeEnum.NO_TYPE, "保留操作码"),
     IMPDEP2(255, "impdep2", OperandTypeEnum.ZERO_OPERAND, InstructionTypeEnum.NO_TYPE, "保留操作码");
