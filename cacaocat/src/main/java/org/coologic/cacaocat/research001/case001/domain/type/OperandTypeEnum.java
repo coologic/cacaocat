@@ -18,7 +18,7 @@ public enum OperandTypeEnum {
     ZERO_OPERAND("ZERO_OPERAND", "无操作数类型", InstructionZeroOperand::new),
     BYTE_OPERAND("BYTE_OPERAND", "字节操作数类型-若前序操作码为wide则为2字节", InstructionByteOperand::new),
     SHORT_OPERAND("SHORT_OPERAND", "2字节操作数类型", InstructionShortOperand::new),
-    BRANCH("BRANCH", "分支指令类型操作", null),
+    BRANCH("BRANCH", "分支指令类型操作", InstructionShortOperand::new),
     TABLE_SWITCH("TABLE_SWITCH", "分支指令-switch-标签直接跳转", null),
     LOOKUP_SWITCH("LOOKUP_SWITCH", "分支指令-switch-标签&值跳转", null),
     INVOKE_INTERFACE("INVOKE_INTERFACE", "特殊操作-接口调用", InstructionInvokeInterface::new),
