@@ -1,16 +1,10 @@
 package org.coologic.cacaocat.research001.case001;
 
-import org.coologic.cacaocat.research001.case001.domain.ClassFile;
-import org.coologic.cacaocat.research001.case001.domain.FieldInfo;
-import org.coologic.cacaocat.research001.case001.domain.MethodInfo;
-import org.coologic.cacaocat.research001.case001.domain.constant.Constant;
-import org.coologic.cacaocat.research001.case001.domain.type.AttributeTypeEnum;
-import org.coologic.cacaocat.research001.case001.domain.type.ConstantTypeEnum;
-import org.coologic.cacaocat.research001.case001.domain.type.OperandTypeEnum;
+import org.coologic.cacaocat.domain.classfile.type.AttributeTypeEnum;
+import org.coologic.cacaocat.domain.classfile.type.ConstantTypeEnum;
+import org.coologic.cacaocat.domain.classfile.type.OperandTypeEnum;
 import org.junit.jupiter.api.Test;
 
-import java.io.DataInput;
-import java.io.IOException;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

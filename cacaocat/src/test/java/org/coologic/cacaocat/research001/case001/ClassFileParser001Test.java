@@ -1,17 +1,15 @@
 package org.coologic.cacaocat.research001.case001;
 
-import org.coologic.cacaocat.research001.case001.domain.ClassFile;
-import org.coologic.cacaocat.research001.case001.domain.FieldInfo;
-import org.coologic.cacaocat.research001.case001.domain.MethodInfo;
-import org.coologic.cacaocat.research001.case001.domain.constant.Constant;
-import org.coologic.cacaocat.research001.case001.domain.type.AttributeTypeEnum;
-import org.coologic.cacaocat.research001.case001.domain.type.ConstantTypeEnum;
-import org.coologic.cacaocat.research001.case001.domain.type.OperandTypeEnum;
+import org.coologic.cacaocat.domain.classfile.util.ClassFileParser;
+import org.coologic.cacaocat.domain.classfile.entity.ClassFile;
+import org.coologic.cacaocat.domain.classfile.entity.FieldInfo;
+import org.coologic.cacaocat.domain.classfile.entity.MethodInfo;
+import org.coologic.cacaocat.domain.classfile.entity.constant.Constant;
+import org.coologic.cacaocat.domain.classfile.util.FileReader;
 import org.junit.jupiter.api.Test;
 
 import java.io.DataInput;
 import java.io.IOException;
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -47,9 +45,7 @@ class ClassFileParser001Test {
             FieldInfo fieldInfo = classFile.getFields().get(i);
             StringBuilder stringBuilder = new StringBuilder();
             fieldInfo.getAccessFlags().forEach(o -> stringBuilder.append(o.getCode()).append(" "));
-            stringBuilder.append(fieldInfo.getDescriptor())
-                    .append(" ")
-                    .append(fieldInfo.getName());
+            stringBuilder.append(fieldInfo.getDescriptor()).append(" ").append(fieldInfo.getName());
             System.out.println(stringBuilder.toString());
         }
     }

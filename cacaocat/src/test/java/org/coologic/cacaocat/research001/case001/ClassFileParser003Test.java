@@ -1,6 +1,8 @@
 package org.coologic.cacaocat.research001.case001;
 
-import org.coologic.cacaocat.research001.case001.domain.ClassFile;
+import org.coologic.cacaocat.domain.classfile.util.ClassFileParser;
+import org.coologic.cacaocat.domain.classfile.entity.ClassFile;
+import org.coologic.cacaocat.domain.classfile.util.FileReader;
 import org.junit.jupiter.api.Test;
 
 import java.io.DataInput;
