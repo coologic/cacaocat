@@ -1,4 +1,4 @@
-package org.coologic.cacaocat.research001.case001;
+package org.coologic.cacaocat.domain.classfile.util;
 
 import org.coologic.cacaocat.domain.classfile.util.ClassFileParser;
 import org.coologic.cacaocat.domain.classfile.entity.ClassFile;

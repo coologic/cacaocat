@@ -1,8 +1,5 @@
-package org.coologic.cacaocat.research001.case001;
+package org.coologic.cacaocat.domain.classfile.type;
 
-import org.coologic.cacaocat.domain.classfile.type.AttributeTypeEnum;
-import org.coologic.cacaocat.domain.classfile.type.ConstantTypeEnum;
-import org.coologic.cacaocat.domain.classfile.type.OperandTypeEnum;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
