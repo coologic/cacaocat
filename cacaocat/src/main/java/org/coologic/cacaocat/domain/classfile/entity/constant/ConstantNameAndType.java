@@ -26,7 +26,7 @@ public class ConstantNameAndType extends AbstractConstant {
 
     @Override
     public String toString() {
-        return String.format("%s@%s", classFile.getConstants().get(nameIndex).toString(),
+        return String.format("%s - %s", classFile.getConstants().get(nameIndex).toString(),
                 classFile.getConstants().get(descriptorIndex).toString());
     }
 

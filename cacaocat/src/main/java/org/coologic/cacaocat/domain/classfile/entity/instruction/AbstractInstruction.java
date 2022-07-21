@@ -24,6 +24,11 @@ public abstract class AbstractInstruction implements Instruction {
     }
 
     @Override
+    public int offset() {
+        return index;
+    }
+
+    @Override
     public void parse(DataInput input, OpcodeTypeEnum type, boolean wide, int index) throws IOException {
         this.index = index;
         this.type = type;
@@ -39,7 +44,7 @@ public abstract class AbstractInstruction implements Instruction {
 
     @Override
     public String toString() {
-        return String.format("#%d\t\t%s", index, type().getCode());
+        return String.format("#%d\t\t%s %s", index, type().getCode(), operandDesc());
     }
 
     @Override

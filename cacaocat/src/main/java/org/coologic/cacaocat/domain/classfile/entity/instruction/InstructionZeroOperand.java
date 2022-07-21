@@ -15,4 +15,9 @@ public class InstructionZeroOperand extends AbstractInstruction {
     public void parseData(DataInput input, boolean isWide, int index) throws IOException {
         //无操作数不需要解析
     }
+
+    @Override
+    public String operandDesc() {
+        return "";
+    }
 }

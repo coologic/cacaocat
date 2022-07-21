@@ -25,7 +25,7 @@ public class ConstantInterfaceMethodref extends AbstractConstant {
 
     @Override
     public String toString() {
-        return String.format("%s : %s", classFile.getConstants().get(nameIndex).toString(),
+        return String.format("%s.%s", classFile.getConstants().get(nameIndex).toString(),
                 classFile.getConstants().get(nameAndTypeIndex).toString());
     }
 

@@ -28,6 +28,11 @@ public class InstructionInvokeInterface extends InstructionShortOperand {
     }
 
     @Override
+    public String operandDesc() {
+        return classFile.getConstants().get(operand).toString();
+    }
+
+    @Override
     public int size() {
         return super.size() + 2;
     }

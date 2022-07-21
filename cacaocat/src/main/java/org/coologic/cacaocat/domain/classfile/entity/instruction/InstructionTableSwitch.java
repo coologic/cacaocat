@@ -35,6 +35,11 @@ public class InstructionTableSwitch extends AbstractInstructionDynamicLengthOper
     }
 
     @Override
+    public String operandDesc() {
+        return "";
+    }
+
+    @Override
     public void parseData(DataInput input, boolean isWide, int index) throws IOException {
         //先计算占位数量
         padSize = calPadSize(index);

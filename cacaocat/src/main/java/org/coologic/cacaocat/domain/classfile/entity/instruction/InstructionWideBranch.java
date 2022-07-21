@@ -22,6 +22,11 @@ public class InstructionWideBranch extends AbstractInstruction {
     }
 
     @Override
+    public String operandDesc() {
+        return "";
+    }
+
+    @Override
     public void parseData(DataInput input, boolean isWide, int index) throws IOException {
         operand = input.readInt();
     }

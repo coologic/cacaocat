@@ -1,11 +1,9 @@
 package org.coologic.cacaocat.domain.classfile.util;
 
-import org.coologic.cacaocat.domain.classfile.util.ClassFileParser;
 import org.coologic.cacaocat.domain.classfile.entity.ClassFile;
 import org.coologic.cacaocat.domain.classfile.entity.FieldInfo;
 import org.coologic.cacaocat.domain.classfile.entity.MethodInfo;
 import org.coologic.cacaocat.domain.classfile.entity.constant.Constant;
-import org.coologic.cacaocat.domain.classfile.util.FileReader;
 import org.junit.jupiter.api.Test;
 
 import java.io.DataInput;

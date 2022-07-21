@@ -21,6 +21,11 @@ public class InstructionByteOperand extends AbstractInstruction {
     }
 
     @Override
+    public String operandDesc() {
+        return String.valueOf(operand);
+    }
+
+    @Override
     public int size() {
         int operandSize = wide ? 2 : 1;
         return super.size() + operandSize;

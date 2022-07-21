@@ -19,6 +19,17 @@ public class InstructionShortOperand extends AbstractInstruction {
     }
 
     @Override
+    public String operandDesc() {
+        switch (type) {
+            case INVOKEVIRTUAL:
+            case INVOKESPECIAL:
+            case INVOKESTATIC:
+                return classFile.getConstants().get(operand).toString();
+            default: return String.valueOf(operand);
+        }
+    }
+
+    @Override
     public int size() {
         return super.size() + 2;
     }

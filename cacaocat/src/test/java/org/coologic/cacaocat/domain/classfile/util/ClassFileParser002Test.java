@@ -1,8 +1,6 @@
 package org.coologic.cacaocat.domain.classfile.util;
 
-import org.coologic.cacaocat.domain.classfile.util.ClassFileParser;
 import org.coologic.cacaocat.domain.classfile.entity.ClassFile;
-import org.coologic.cacaocat.domain.classfile.util.FileReader;
 import org.junit.jupiter.api.Test;
 
 import java.io.DataInput;
@@ -14,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class ClassFileParser002Test {
     @Test
     void testParse() throws IOException {
+
         String path = System.getProperty("user.dir") + "/src/test/resources/bytecode/case002.class";
         DataInput dataInput = FileReader.readClassFile(path);
         ClassFile classFile = ClassFileParser.parseClassFile(dataInput);
