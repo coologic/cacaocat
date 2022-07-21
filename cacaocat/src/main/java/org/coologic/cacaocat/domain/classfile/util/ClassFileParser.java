@@ -20,7 +20,6 @@ import java.util.Objects;
 import java.util.function.Function;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-
 public class ClassFileParser {
 
     public static ClassFile parseClassFile(DataInput input) throws IOException {

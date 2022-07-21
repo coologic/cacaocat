@@ -16,7 +16,7 @@ class ClassFileParser001Test {
     @Test
     void testParse() throws IOException {
         String path = System.getProperty("user.dir") + "/src/test/resources/bytecode/case001.class";
-        DataInput dataInput = FileReader.readClassFile(path);
+        DataInput dataInput = FileReader.readFile(path);
         ClassFile classFile = ClassFileParser.parseClassFile(dataInput);
         assertNotNull(classFile);
         String s = classFile.toString();
@@ -26,7 +26,7 @@ class ClassFileParser001Test {
     @Test
     void testPrintConstant() throws IOException {
         String path = System.getProperty("user.dir") + "/src/test/resources/bytecode/case001.class";
-        DataInput dataInput = FileReader.readClassFile(path);
+        DataInput dataInput = FileReader.readFile(path);
         ClassFile classFile = ClassFileParser.parseClassFile(dataInput);
         for (int i = 0; i < classFile.getConstants().size(); i++) {
             Constant constant = classFile.getConstants().get(i);
@@ -37,7 +37,7 @@ class ClassFileParser001Test {
     @Test
     void testFields() throws IOException {
         String path = System.getProperty("user.dir") + "/src/test/resources/bytecode/case001.class";
-        DataInput dataInput = FileReader.readClassFile(path);
+        DataInput dataInput = FileReader.readFile(path);
         ClassFile classFile = ClassFileParser.parseClassFile(dataInput);
         for (int i = 0; i < classFile.getFields().size(); i++) {
             FieldInfo fieldInfo = classFile.getFields().get(i);
@@ -51,7 +51,7 @@ class ClassFileParser001Test {
     @Test
     void testMethods() throws IOException {
         String path = System.getProperty("user.dir") + "/src/test/resources/bytecode/case001.class";
-        DataInput dataInput = FileReader.readClassFile(path);
+        DataInput dataInput = FileReader.readFile(path);
         ClassFile classFile = ClassFileParser.parseClassFile(dataInput);
         for (int i = 0; i < classFile.getMethods().size(); i++) {
             MethodInfo methodInfo = classFile.getMethods().get(i);
@@ -65,7 +65,7 @@ class ClassFileParser001Test {
     @Test
     void testAttributes() throws IOException {
         String path = System.getProperty("user.dir") + "/src/test/resources/bytecode/case001.class";
-        DataInput dataInput = FileReader.readClassFile(path);
+        DataInput dataInput = FileReader.readFile(path);
         ClassFile classFile = ClassFileParser.parseClassFile(dataInput);
         for (int i = 0; i < classFile.getAbstractAttributes().size(); i++) {
             System.out.println(classFile.getAbstractAttributes().get(i).toString());

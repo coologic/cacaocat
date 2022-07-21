@@ -1,8 +1,6 @@
 package org.coologic.cacaocat.domain.classfile.util;
 
-import org.coologic.cacaocat.domain.classfile.util.ClassFileParser;
 import org.coologic.cacaocat.domain.classfile.entity.ClassFile;
-import org.coologic.cacaocat.domain.classfile.util.FileReader;
 import org.junit.jupiter.api.Test;
 
 import java.io.DataInput;
@@ -15,7 +13,7 @@ class ClassFileParser003Test {
     @Test
     void testParse() throws IOException {
         String path = System.getProperty("user.dir") + "/src/test/resources/bytecode/case003_switchInstruction.class";
-        DataInput dataInput = FileReader.readClassFile(path);
+        DataInput dataInput = FileReader.readFile(path);
         ClassFile classFile = ClassFileParser.parseClassFile(dataInput);
         assertNotNull(classFile);
         String s = classFile.toString();

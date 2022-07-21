@@ -10,7 +10,7 @@ import java.io.FileNotFoundException;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class FileReader {
-    public static DataInput readClassFile(String path) throws FileNotFoundException {
+    public static DataInput readFile(String path) throws FileNotFoundException {
         return new DataInputStream(new FileInputStream(path));
     }
 }

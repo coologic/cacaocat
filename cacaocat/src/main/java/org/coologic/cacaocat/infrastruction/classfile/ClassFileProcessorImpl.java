@@ -12,9 +12,15 @@ import java.io.IOException;
 @Component
 public class ClassFileProcessorImpl implements ClassFileProcessor {
     @Override
-    public ClassFile parserFile(String path) throws IOException {
-        String absolutePath = System.getProperty("user.dir") + path;
-        DataInput dataInput = FileReader.readClassFile(absolutePath);
-        return ClassFileParser.parseClassFile(dataInput);
+    public ClassFile parseFile(String path) {
+        ClassFile classFile;
+        try {
+            String absolutePath = System.getProperty("user.dir") + path;
+            DataInput dataInput = FileReader.readFile(absolutePath);
+            classFile = ClassFileParser.parseClassFile(dataInput);
+        } catch (IOException e) {
+            throw new IllegalArgumentException(e);
+        }
+        return classFile;
     }
 }
