@@ -9,12 +9,12 @@ public abstract class AbstractInstructionDynamicLengthOperand extends AbstractIn
 
     protected int padSize;
 
-    public AbstractInstructionDynamicLengthOperand(ClassFile classFile) {
+    protected AbstractInstructionDynamicLengthOperand(ClassFile classFile) {
         super(classFile);
     }
 
 
-    final protected int calPadSize(int index) {
+    protected final int calPadSize(int index) {
         // index 为 当前指令开头的位置（未读取当前指令码时的值，所以要+1）
         int padMidSize = 4 - (index + 1) % 4;
         return padMidSize == 4 ? 0 : padMidSize;

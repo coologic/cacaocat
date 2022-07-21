@@ -1,5 +1,7 @@
 package org.coologic.cacaocat.domain.classfile.util;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.coologic.cacaocat.domain.classfile.entity.ClassFile;
 import org.coologic.cacaocat.domain.classfile.entity.FieldInfo;
 import org.coologic.cacaocat.domain.classfile.entity.MethodInfo;
@@ -16,6 +18,8 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
+
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 
 public class ClassFileParser {
 

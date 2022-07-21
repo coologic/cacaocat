@@ -1,5 +1,8 @@
 package org.coologic.cacaocat.domain.classfile.type;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 import java.util.EnumSet;
 
 import static org.coologic.cacaocat.domain.classfile.type.AccessFlagEnum.ABSTRACT;
@@ -26,6 +29,7 @@ import static org.coologic.cacaocat.domain.classfile.type.AccessFlagEnum.TRANSIT
 import static org.coologic.cacaocat.domain.classfile.type.AccessFlagEnum.VARARGS;
 import static org.coologic.cacaocat.domain.classfile.type.AccessFlagEnum.VOLATILE;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class AccessFlagEnumSet {
     public static final EnumSet<AccessFlagEnum> CLASS_TYPE = EnumSet.of(
             PUBLIC,
@@ -97,5 +101,4 @@ public class AccessFlagEnumSet {
             SYNTHETIC,
             MANDATED
     );
-
 }

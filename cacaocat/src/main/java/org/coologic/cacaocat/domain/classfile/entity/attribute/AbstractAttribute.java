@@ -26,7 +26,7 @@ public abstract class AbstractAttribute implements Attribute {
     @JsonIgnore
     protected byte[] sourceAttributeInfo;
 
-    public AbstractAttribute(ClassFile classFile) {
+    protected AbstractAttribute(ClassFile classFile) {
         this.classFile = classFile;
     }
 
@@ -40,7 +40,7 @@ public abstract class AbstractAttribute implements Attribute {
         parseData(new DataInputStream(new ByteArrayInputStream(sourceAttributeInfo)));
     }
 
-    abstract public void parseData(DataInput input) throws IOException;
+    public abstract void parseData(DataInput input) throws IOException;
 
     @Override
     public String toString() {

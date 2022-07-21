@@ -19,7 +19,7 @@ public abstract class AbstractInstruction implements Instruction {
 
     protected OpcodeTypeEnum type;
 
-    public AbstractInstruction(ClassFile classFile) {
+    protected AbstractInstruction(ClassFile classFile) {
         this.classFile = classFile;
     }
 
@@ -30,10 +30,10 @@ public abstract class AbstractInstruction implements Instruction {
         parseData(input, wide, index);
     }
 
-    abstract public void parseData(DataInput input, boolean isWide, int index) throws IOException;
+    public abstract void parseData(DataInput input, boolean isWide, int index) throws IOException;
 
     @Override
-    final public OpcodeTypeEnum type() {
+    public final OpcodeTypeEnum type() {
         return type;
     }
 

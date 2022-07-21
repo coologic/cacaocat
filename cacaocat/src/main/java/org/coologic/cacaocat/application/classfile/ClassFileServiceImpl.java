@@ -18,7 +18,7 @@ public class ClassFileServiceImpl implements ClassFileService {
         try {
             return classFileProcessor.parserFile(path);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalArgumentException(e);
         }
     }
 
