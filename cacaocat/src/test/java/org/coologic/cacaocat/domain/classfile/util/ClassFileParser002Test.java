@@ -14,7 +14,7 @@ class ClassFileParser002Test {
     void testParse() throws IOException {
 
         String path = System.getProperty("user.dir") + "/src/test/resources/bytecode/case002.class";
-        DataInput dataInput = FileReader.readFile(path);
+        DataInput dataInput = FileReader.readClassFile(path);
         ClassFile classFile = ClassFileParser.parseClassFile(dataInput);
         assertNotNull(classFile);
         String s = classFile.toString();

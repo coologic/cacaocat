@@ -13,7 +13,7 @@ class ClassFileParser003Test {
     @Test
     void testParse() throws IOException {
         String path = System.getProperty("user.dir") + "/src/test/resources/bytecode/case003_switchInstruction.class";
-        DataInput dataInput = FileReader.readFile(path);
+        DataInput dataInput = FileReader.readClassFile(path);
         ClassFile classFile = ClassFileParser.parseClassFile(dataInput);
         assertNotNull(classFile);
         String s = classFile.toString();

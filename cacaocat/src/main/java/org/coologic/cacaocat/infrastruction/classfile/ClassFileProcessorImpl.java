@@ -16,7 +16,7 @@ public class ClassFileProcessorImpl implements ClassFileProcessor {
         ClassFile classFile;
         try {
             String absolutePath = System.getProperty("user.dir") + path;
-            DataInput dataInput = FileReader.readFile(absolutePath);
+            DataInput dataInput = FileReader.readClassFile(absolutePath);
             classFile = ClassFileParser.parseClassFile(dataInput);
         } catch (IOException e) {
             throw new IllegalArgumentException(e);
