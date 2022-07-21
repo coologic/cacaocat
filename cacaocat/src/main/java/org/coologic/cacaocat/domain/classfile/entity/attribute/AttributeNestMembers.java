@@ -27,7 +27,7 @@ public class AttributeNestMembers extends AbstractAttribute {
 
     @Override
     public void parseData(DataInput input) throws IOException {
-        int classCount = input.readInt();
+        int classCount = input.readUnsignedShort();
         while (classes.size() < classCount) {
             classes.add(input.readUnsignedShort());
         }

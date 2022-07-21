@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.coologic.cacaocat.domain.classfile.entity.ClassFile;
 
-import java.io.ByteArrayInputStream;
-import java.io.DataInput;
-import java.io.DataInputStream;
-import java.io.IOException;
+import java.io.*;
 
 @Getter
 @Setter
@@ -37,7 +34,11 @@ public abstract class AbstractAttribute implements Attribute {
         //上下文隔离，避免某一个实现类写错导致整体读取错误
         sourceAttributeInfo = new byte[attributeLength];
         input.readFully(sourceAttributeInfo);
-        parseData(new DataInputStream(new ByteArrayInputStream(sourceAttributeInfo)));
+        try {
+            parseData(new DataInputStream(new ByteArrayInputStream(sourceAttributeInfo)));
+        } catch (EOFException e) {
+            System.err.println(String.format("属性解析失败,type=%s,trace=%s", type().getCode(),e));
+        }
     }
 
     public abstract void parseData(DataInput input) throws IOException;
